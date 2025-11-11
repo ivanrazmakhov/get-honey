@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Selection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .selected{ background: var(--stroke); color: var(--bg); }
+    .summary-card{ padding:12px 16px; border:1px solid var(--stroke); border-radius:12px; margin:6px 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Страницы 1-5: предыдущие страницы ... -->
+
+  <!-- Страница 1 -->
+  <main id="page1" class="container" role="main">
+    <div class="status">
+      <div class="dot active">1</div>
+      <div class="dot">2</div>
+      <div class="dot">3</div>
+      <div class="dot">4</div>
+      <div class="dot">5</div>
+      <div class="dot">6</div>
+    </div>
+    <h1>Choose Style</h1>
+    <section class="cards" aria-label="Styles">
+      <a href="#page2" class="card" data-summary="style"><span class="pill">Realistic</span></a>
+      <a href="#page2" class="card" data-summary="style"><span class="pill">Anime</span></a>
+    </section>
+  </main>
+
+  <!-- Страница 2 -->
+  <main id="page2" class="container" role="main" style="display:none;">
+    <div class="status">
+      <div class="dot">1</div>
+      <div class="dot active">2</div>
+      <div class="dot">3</div>
+      <div class="dot">4</div>
+      <div class="dot">5</div>
+      <div class="dot">6</div>
+    </div>
+    <h1>Choose Ethnicity</h1>
+    <section class="ethnicity-options" data-summary="ethnicity">
+      <div class="ethnicity-card"><span class="pill small">White</span></div>
+      <div class="ethnicity-card"><span class="pill small">Asian</span></div>
+      <div class="ethnicity-card"><span class="pill small">Arab</span></div>
+      <div class="ethnicity-card"><span class="pill small">Black</span></div>
+      <div class="ethnicity-card"><span class="pill small">Latina</span></div>
+    </section>
+    <div class="slider-section">
+      <label for="age-range">Age</label>
+      <input type="range" id="age-range" min="18" max="55" value="18">
+      <div class="age-labels"><span>18+</span><span>55+</span></div>
+    </div>
+    <div class="buttons">
+      <button class="nav-button" id="prevBtn">Previous</button>
+      <button class="nav-button" id="nextBtn">Next</button>
+    </div>
+  </main>
+
+  <!-- Страница 3,4,5 аналогично ... -->
+
+  <!-- Страница 6: Summary -->
+  <main id="page6" class="container" role="main" style="display:none;">
+    <div class="status">
+      <div class="dot">1</div>
+      <div class="dot">2</div>
+      <div class="dot">3</div>
+      <div class="dot">4</div>
+      <div class="dot">5</div>
+      <div class="dot active">6</div>
+    </div>
+    <h1>Summary</h1>
+    <section class="summary-grid">
+      <div class="summary-card">Style: <span id="summary-style"></span></div>
+      <div class="summary-card">Ethnicity: <span id="summary-ethnicity"></span></div>
+      <div class="summary-card">Body Type: <span id="summary-body"></span></div>
+      <div class="summary-card">Breast Size: <span id="summary-breast"></span></div>
+      <div class="summary-card">Butt Size: <span id="summary-butt"></span></div>
+      <div class="summary-card">Hair Style: <span id="summary-hair-style"></span></div>
+      <div class="summary-card">Hair Color: <span id="summary-hair-color"></span></div>
+      <div class="summary-card">Eye Color: <span id="summary-eye"></span></div>
+      <div class="summary-card">Voice: <span id="summary-voice"></span></div>
+      <div class="summary-card">Relationship: <span id="summary-relationship"></span></div>
+    </section>
+    <div class="buttons">
+      <button class="nav-button" id="prev6Btn">Previous</button>
+      <button class="nav-button" id="finalBtn">Bring My AI to Live</button>
+    </div>
+  </main>
+
+  <script>
+    function makeSelectable(sectionSelector, summaryId){
+      const section = document.querySelector(sectionSelector);
+      if(!section) return;
+      section.querySelectorAll('.selection-card, .ethnicity-card, .card').forEach(el=>{
+        el.addEventListener('click', ()=>{
+          section.querySelectorAll('.selection-card, .ethnicity-card, .card').forEach(e=>e.classList.remove('selected'));
+          el.classList.add('selected');
+          if(summaryId) document.getElementById(summaryId).textContent = el.innerText.trim();
+        });
+      });
+    }
+
+    // Применяем выделение и связываем с Summary
+    makeSelectable('#page1 .cards','summary-style');
+    makeSelectable('#page2 .ethnicity-options','summary-ethnicity');
+    document.querySelectorAll('#page3 .selection-grid').forEach((_,i)=>{
+      const ids=['summary-body','summary-breast','summary-butt'];
+      makeSelectable(`#page3 .selection-grid:nth-of-type(${i+1})`,ids[i]);
+    });
+    document.querySelectorAll('#page4 .selection-grid').forEach((_,i)=>{
+      const ids=['summary-hair-style','summary-hair-color','summary-eye'];
+      makeSelectable(`#page4 .selection-grid:nth-of-type(${i+1})`,ids[i]);
+    });
+    document.querySelectorAll('#page5 .selection-grid').forEach((_,i)=>{
+      const ids=['summary-voice','summary-relationship'];
+      makeSelectable(`#page5 .selection-grid:nth-of-type(${i+1})`,ids[i]);
+    });
+
+    // Навигация между страницами
+    const pages=['page1','page2','page3','page4','page5','page6'];
+    function showPage(showId){
+      pages.forEach(id=>document.getElementById(id).style.display='none');
+      document.getElementById(showId).style.display='flex';
+    }
+
+    // Пример навигации кнопок (подобрать ID на каждой странице)
+    document.querySelectorAll('a[href^="#page2"]').forEach(l=>l.addEventListener('click',e=>{e.preventDefault();showPage('page2');}));
+    document.getElementById('prevBtn').addEventListener('click',()=>showPage('page1'));
+    document.getElementById('nextBtn').addEventListener('click',()=>showPage('page3'));
+    document.getElementById('prev3Btn').addEventListener('click',()=>showPage('page2'));
+    document.getElementById('next3Btn').addEventListener('click',()=>showPage('page4'));
+    document.getElementById('prev4Btn').addEventListener('click',()=>showPage('page3'));
+    document.getElementById('next4Btn').addEventListener('click',()=>showPage('page5'));
+    document.getElementById('prev5Btn').addEventListener('click',()=>showPage('page4'));
+    document.getElementById('next5Btn').addEventListener('click',()=>showPage('page6'));
+    document.getElementById('prev6Btn').addEventListener('click',()=>showPage('page5'));
+    document.getElementById('finalBtn').addEventListener('click',()=>alert('AI activated!'));
+  </script>
+
+</body>
+</html>
