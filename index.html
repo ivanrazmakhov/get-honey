@@ -1,214 +1,251 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AI Character Builder</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .selected { background: var(--stroke); color: var(--bg); }
-    .summary-card { padding:12px 16px; border:1px solid var(--stroke); border-radius:12px; margin:6px 0; }
-    .hidden { display: none; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Customization</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- ======== Page 1 ======== -->
-  <main id="page1" class="container" role="main">
+
+  <!-- ====== Страница 1 ====== -->
+  <section class="page active" data-step="1">
     <div class="status">
-      <div class="dot active">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div>
+      <div class="dot active" data-step="1">1</div>
+      <div class="dot" data-step="2">2</div>
+      <div class="dot" data-step="3">3</div>
+      <div class="dot" data-step="4">4</div>
+      <div class="dot" data-step="5">5</div>
+      <div class="dot" data-step="6">6</div>
     </div>
+
     <h1>Choose Style</h1>
-    <section class="cards" data-page="1">
-      <div class="card" data-key="style" data-value="Realistic"><span class="pill">Realistic</span></div>
-      <div class="card" data-key="style" data-value="Anime"><span class="pill">Anime</span></div>
-    </section>
-    <div class="buttons">
-      <button class="nav-button next">Next</button>
+    <div class="cards-row">
+      <div class="style-card selectable" data-category="Style" data-value="Realistic">
+        <img src="https://i.ibb.co/MhLpVsm/realistic.jpg" alt="Realistic" />
+        <span class="label">Realistic</span>
+      </div>
+      <div class="style-card selectable" data-category="Style" data-value="Anime">
+        <img src="https://i.ibb.co/T2sZtFn/anime.jpg" alt="Anime" />
+        <span class="label">Anime</span>
+      </div>
     </div>
-  </main>
 
-  <!-- ======== Page 2 ======== -->
-  <main id="page2" class="container hidden" role="main">
-    <div class="status">
-      <div class="dot">1</div><div class="dot active">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div>
+    <div class="buttons">
+      <button class="next" data-next="2">Next</button>
     </div>
+  </section>
+
+  <!-- ====== Страница 2 ====== -->
+  <section class="page" data-step="2">
+    <div class="status">
+      <div class="dot" data-step="1">1</div>
+      <div class="dot active" data-step="2">2</div>
+      <div class="dot" data-step="3">3</div>
+      <div class="dot" data-step="4">4</div>
+      <div class="dot" data-step="5">5</div>
+      <div class="dot" data-step="6">6</div>
+    </div>
+
     <h1>Choose Ethnicity</h1>
-    <section class="list-vertical" data-page="2">
-      <div class="card thin" data-key="ethnicity" data-value="White"><span class="pill small">White</span></div>
-      <div class="card thin" data-key="ethnicity" data-value="Asian"><span class="pill small">Asian</span></div>
-      <div class="card thin" data-key="ethnicity" data-value="Arab"><span class="pill small">Arab</span></div>
-      <div class="card thin" data-key="ethnicity" data-value="Black"><span class="pill small">Black</span></div>
-      <div class="card thin" data-key="ethnicity" data-value="Latina"><span class="pill small">Latina</span></div>
-    </section>
-    <div class="slider-section">
-      <label>Age</label>
-      <input type="range" id="age" min="18" max="55" value="18" />
-      <div class="age-labels"><span>18+</span><span>55+</span></div>
+    <div class="cards-grid grid-1">
+      <div class="option-card selectable" data-category="Ethnicity" data-value="White">White</div>
+      <div class="option-card selectable" data-category="Ethnicity" data-value="Asian">Asian</div>
+      <div class="option-card selectable" data-category="Ethnicity" data-value="Arab">Arab</div>
+      <div class="option-card selectable" data-category="Ethnicity" data-value="Black">Black</div>
+      <div class="option-card selectable" data-category="Ethnicity" data-value="Latina">Latina</div>
     </div>
-    <div class="buttons">
-      <button class="nav-button prev">Previous</button>
-      <button class="nav-button next">Next</button>
-    </div>
-  </main>
 
-  <!-- ======== Page 3 ======== -->
-  <main id="page3" class="container hidden" role="main">
-    <div class="status">
-      <div class="dot">1</div><div class="dot">2</div><div class="dot active">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div>
+    <div class="slider-block">
+      <label for="ageRange">Age Range</label>
+      <input type="range" id="ageRange" min="18" max="55" value="25" />
+      <div class="slider-values">18+ — 55+</div>
     </div>
+
+    <div class="buttons">
+      <button class="prev" data-prev="1">Previous</button>
+      <button class="next" data-next="3">Next</button>
+    </div>
+  </section>
+
+  <!-- ====== Страница 3 ====== -->
+  <section class="page" data-step="3">
+    <div class="status">
+      <div class="dot" data-step="1">1</div>
+      <div class="dot" data-step="2">2</div>
+      <div class="dot active" data-step="3">3</div>
+      <div class="dot" data-step="4">4</div>
+      <div class="dot" data-step="5">5</div>
+      <div class="dot" data-step="6">6</div>
+    </div>
+
     <h1>Choose Body Type</h1>
-    <section class="grid" data-page="3" data-key="body">
-      <div class="card square" data-value="Slim"><span class="pill small">Slim</span></div>
-      <div class="card square" data-value="Athletic"><span class="pill small">Athletic</span></div>
-      <div class="card square" data-value="Voluptuous"><span class="pill small">Voluptuous</span></div>
-      <div class="card square" data-value="Curvy"><span class="pill small">Curvy</span></div>
-    </section>
+    <div class="cards-grid grid-4">
+      <div class="option-card selectable" data-category="Body Type" data-value="Slim">Slim</div>
+      <div class="option-card selectable" data-category="Body Type" data-value="Athletic">Athletic</div>
+      <div class="option-card selectable" data-category="Body Type" data-value="Voluptuous">Voluptuous</div>
+      <div class="option-card selectable" data-category="Body Type" data-value="Curvy">Curvy</div>
+    </div>
 
     <h1>Choose Breast Size</h1>
-    <section class="grid" data-key="breast">
-      <div class="card square" data-value="Small"><span class="pill small">Small</span></div>
-      <div class="card square" data-value="Medium"><span class="pill small">Medium</span></div>
-      <div class="card square" data-value="Large"><span class="pill small">Large</span></div>
-      <div class="card square" data-value="Huge"><span class="pill small">Huge</span></div>
-    </section>
+    <div class="cards-grid grid-4">
+      <div class="option-card selectable" data-category="Breast Size" data-value="Small">Small</div>
+      <div class="option-card selectable" data-category="Breast Size" data-value="Medium">Medium</div>
+      <div class="option-card selectable" data-category="Breast Size" data-value="Large">Large</div>
+      <div class="option-card selectable" data-category="Breast Size" data-value="Huge">Huge</div>
+    </div>
 
     <h1>Choose Butt Size</h1>
-    <section class="grid" data-key="butt">
-      <div class="card square" data-value="Skinny"><span class="pill small">Skinny</span></div>
-      <div class="card square" data-value="Medium"><span class="pill small">Medium</span></div>
-      <div class="card square" data-value="Athletic"><span class="pill small">Athletic</span></div>
-      <div class="card square" data-value="Large"><span class="pill small">Large</span></div>
-    </section>
+    <div class="cards-grid grid-4">
+      <div class="option-card selectable" data-category="Butt Size" data-value="Skinny">Skinny</div>
+      <div class="option-card selectable" data-category="Butt Size" data-value="Medium">Medium</div>
+      <div class="option-card selectable" data-category="Butt Size" data-value="Athletic">Athletic</div>
+      <div class="option-card selectable" data-category="Butt Size" data-value="Large">Large</div>
+    </div>
 
     <div class="buttons">
-      <button class="nav-button prev">Previous</button>
-      <button class="nav-button next">Next</button>
+      <button class="prev" data-prev="2">Previous</button>
+      <button class="next" data-next="4">Next</button>
     </div>
-  </main>
+  </section>
 
-  <!-- ======== Page 4 ======== -->
-  <main id="page4" class="container hidden" role="main">
+  <!-- ====== Страница 4 ====== -->
+  <section class="page" data-step="4">
     <div class="status">
-      <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot active">4</div><div class="dot">5</div><div class="dot">6</div>
+      <div class="dot" data-step="1">1</div>
+      <div class="dot" data-step="2">2</div>
+      <div class="dot" data-step="3">3</div>
+      <div class="dot active" data-step="4">4</div>
+      <div class="dot" data-step="5">5</div>
+      <div class="dot" data-step="6">6</div>
     </div>
+
     <h1>Choose Hair Style</h1>
-    <section class="grid six" data-key="hairStyle">
-      <div class="card square" data-value="Straight"><span class="pill small">Straight</span></div>
-      <div class="card square" data-value="Short"><span class="pill small">Short</span></div>
-      <div class="card square" data-value="Braids"><span class="pill small">Braids</span></div>
-      <div class="card square" data-value="Bun"><span class="pill small">Bun</span></div>
-      <div class="card square" data-value="Curly"><span class="pill small">Curly</span></div>
-      <div class="card square" data-value="Ponytail"><span class="pill small">Ponytail</span></div>
-    </section>
+    <div class="cards-grid grid-6">
+      <div class="option-card selectable" data-category="Hair Style" data-value="Straight">Straight</div>
+      <div class="option-card selectable" data-category="Hair Style" data-value="Short">Short</div>
+      <div class="option-card selectable" data-category="Hair Style" data-value="Braids">Braids</div>
+      <div class="option-card selectable" data-category="Hair Style" data-value="Bun">Bun</div>
+      <div class="option-card selectable" data-category="Hair Style" data-value="Curly">Curly</div>
+      <div class="option-card selectable" data-category="Hair Style" data-value="Ponytail">Ponytail</div>
+    </div>
 
     <h1>Choose Hair Color</h1>
-    <section class="grid five" data-key="hairColor">
-      <div class="card square" data-value="Blondie"><span class="pill small">Blondie</span></div>
-      <div class="card square" data-value="Brunette"><span class="pill small">Brunette</span></div>
-      <div class="card square" data-value="Black"><span class="pill small">Black</span></div>
-      <div class="card square" data-value="Pink"><span class="pill small">Pink</span></div>
-      <div class="card square" data-value="Redhead"><span class="pill small">Redhead</span></div>
-    </section>
+    <div class="cards-grid grid-5">
+      <div class="option-card selectable" data-category="Hair Color" data-value="Blondie">Blondie</div>
+      <div class="option-card selectable" data-category="Hair Color" data-value="Brunette">Brunette</div>
+      <div class="option-card selectable" data-category="Hair Color" data-value="Black">Black</div>
+      <div class="option-card selectable" data-category="Hair Color" data-value="Pink">Pink</div>
+      <div class="option-card selectable" data-category="Hair Color" data-value="Redhead">Redhead</div>
+    </div>
 
     <h1>Choose Eye Color</h1>
-    <section class="grid three" data-key="eyeColor">
-      <div class="card square" data-value="Blue"><span class="pill small">Blue</span></div>
-      <div class="card square" data-value="Brown"><span class="pill small">Brown</span></div>
-      <div class="card square" data-value="Green"><span class="pill small">Green</span></div>
-    </section>
+    <div class="cards-grid grid-3">
+      <div class="option-card selectable" data-category="Eye Color" data-value="Blue">Blue</div>
+      <div class="option-card selectable" data-category="Eye Color" data-value="Brown">Brown</div>
+      <div class="option-card selectable" data-category="Eye Color" data-value="Green">Green</div>
+    </div>
 
     <div class="buttons">
-      <button class="nav-button prev">Previous</button>
-      <button class="nav-button next">Next</button>
+      <button class="prev" data-prev="3">Previous</button>
+      <button class="next" data-next="5">Next</button>
     </div>
-  </main>
+  </section>
 
-  <!-- ======== Page 5 ======== -->
-  <main id="page5" class="container hidden" role="main">
+  <!-- ====== Страница 5 ====== -->
+  <section class="page" data-step="5">
     <div class="status">
-      <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot active">5</div><div class="dot">6</div>
+      <div class="dot" data-step="1">1</div>
+      <div class="dot" data-step="2">2</div>
+      <div class="dot" data-step="3">3</div>
+      <div class="dot" data-step="4">4</div>
+      <div class="dot active" data-step="5">5</div>
+      <div class="dot" data-step="6">6</div>
     </div>
+
     <h1>Choose Voice</h1>
-    <section class="grid" data-key="voice">
-      <div class="card square" data-value="Voice 1 Innocent"><span class="pill small">Voice 1 Innocent</span></div>
-      <div class="card square" data-value="Voice 2 Standard"><span class="pill small">Voice 2 Standard</span></div>
-      <div class="card square" data-value="Voice 3 Sedustress"><span class="pill small">Voice 3 Sedustress</span></div>
-      <div class="card square" data-value="Voice 4 Dominant"><span class="pill small">Voice 4 Dominant</span></div>
-    </section>
+    <div class="cards-grid grid-4">
+      <div class="option-card selectable" data-category="Voice" data-value="Voice 1 Innocent">Voice 1 Innocent</div>
+      <div class="option-card selectable" data-category="Voice" data-value="Voice 2 Standard">Voice 2 Standard</div>
+      <div class="option-card selectable" data-category="Voice" data-value="Seductress">Seductress</div>
+      <div class="option-card selectable" data-category="Voice" data-value="Voice 4 Dominant">Voice 4 Dominant</div>
+    </div>
 
     <h1>Choose Relationship</h1>
-    <section class="grid four" data-key="relationship">
-      <div class="card rect" data-value="Step Sister"><span class="pill small">Step Sister</span></div>
-      <div class="card rect" data-value="Step Mom"><span class="pill small">Step Mom</span></div>
-      <div class="card rect" data-value="Girlfriend"><span class="pill small">Girlfriend</span></div>
-      <div class="card rect" data-value="Sex Friend"><span class="pill small">Sex Friend</span></div>
-    </section>
+    <div class="cards-grid grid-2">
+      <div class="option-card selectable" data-category="Relationship" data-value="Step Sister">Step Sister</div>
+      <div class="option-card selectable" data-category="Relationship" data-value="Step Mom">Step Mom</div>
+      <div class="option-card selectable" data-category="Relationship" data-value="Girlfriend">Girlfriend</div>
+      <div class="option-card selectable" data-category="Relationship" data-value="Sex Friend">Sex Friend</div>
+    </div>
 
     <div class="buttons">
-      <button class="nav-button prev">Previous</button>
-      <button class="nav-button next">Next</button>
+      <button class="prev" data-prev="4">Previous</button>
+      <button class="next" data-next="6">Next</button>
     </div>
-  </main>
+  </section>
 
-  <!-- ======== Page 6 ======== -->
-  <main id="page6" class="container hidden" role="main">
+  <!-- ====== Страница 6 (Summary) ====== -->
+  <section class="page" data-step="6">
     <div class="status">
-      <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot active">6</div>
+      <div class="dot" data-step="1">1</div>
+      <div class="dot" data-step="2">2</div>
+      <div class="dot" data-step="3">3</div>
+      <div class="dot" data-step="4">4</div>
+      <div class="dot" data-step="5">5</div>
+      <div class="dot active" data-step="6">6</div>
     </div>
-    <h1>Summary</h1>
-    <section id="summary"></section>
-    <div class="buttons">
-      <button class="nav-button prev">Previous</button>
-      <button class="nav-button finish">Bring My AI to Live</button>
-    </div>
-  </main>
 
+    <h1>Summary</h1>
+    <div id="summary"></div>
+
+    <div class="buttons">
+      <button class="prev" data-prev="5">Previous</button>
+      <button class="next">Bring My AI to Live</button>
+    </div>
+  </section>
+
+  <!-- ====== SCRIPT ====== -->
   <script>
-    const pages = document.querySelectorAll('main');
-    let current = 0;
-    const choices = {};
+    const pages = document.querySelectorAll('.page');
+    const nextButtons = document.querySelectorAll('.next');
+    const prevButtons = document.querySelectorAll('.prev');
+    const selectableCards = document.querySelectorAll('.selectable');
+    const summaryContainer = document.getElementById('summary');
+    const selections = {};
 
     // Навигация
-    function showPage(i){
-      pages.forEach((p,idx)=>p.classList.toggle('hidden', idx!==i));
-      current = i;
-      if(i===5) updateSummary();
+    function showPage(step) {
+      pages.forEach(page => {
+        page.classList.toggle('active', page.dataset.step === step.toString());
+      });
+      if (step === '6') updateSummary();
     }
 
-    document.querySelectorAll('.next').forEach(btn=>btn.addEventListener('click',()=>{
-      if(current < pages.length-1) showPage(current+1);
-    }));
+    nextButtons.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.next)));
+    prevButtons.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.prev)));
 
-    document.querySelectorAll('.prev').forEach(btn=>btn.addEventListener('click',()=>{
-      if(current > 0) showPage(current-1);
-    }));
-
-    document.querySelector('.finish').addEventListener('click',()=>{
-      alert('Your AI setup is complete!');
-    });
-
-    // Выбор
-    document.querySelectorAll('.card').forEach(card=>{
-      card.addEventListener('click',()=>{
-        const parent = card.closest('section');
-        parent.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+    // Выбор карточек
+    selectableCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const category = card.dataset.category;
+        const value = card.dataset.value;
+        const siblings = [...document.querySelectorAll(`.selectable[data-category='${category}']`)];
+        siblings.forEach(el => el.classList.remove('selected'));
         card.classList.add('selected');
-        const key = card.dataset.key || parent.dataset.key;
-        if(key) choices[key] = card.dataset.value;
+        selections[category] = value;
       });
     });
 
-    // Итог
-    function updateSummary(){
-      const container = document.getElementById('summary');
-      container.innerHTML = '';
-      for(const [k,v] of Object.entries(choices)){
+    // Обновление Summary
+    function updateSummary() {
+      summaryContainer.innerHTML = '';
+      Object.entries(selections).forEach(([category, value]) => {
         const div = document.createElement('div');
-        div.className = 'summary-card';
-        div.textContent = `${k}: ${v}`;
-        container.appendChild(div);
-      }
+        div.className = 'summary-item';
+        div.innerHTML = `<strong>${category}:</strong> ${value}`;
+        summaryContainer.appendChild(div);
+      });
     }
   </script>
 </body>
