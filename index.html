@@ -36,36 +36,48 @@
 
   <!-- ===== PAGE 2 ===== -->
   <section class="page" id="page2">
-    <div class="status">
-      <div class="dot">1</div>
-      <div class="dot active">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot">6</div>
-    </div>
+  <div class="status">
+    <div class="dot">1</div>
+    <div class="dot active">2</div>
+    <div class="dot">3</div>
+    <div class="dot">4</div>
+    <div class="dot">5</div>
+    <div class="dot">6</div>
+  </div>
 
-    <h1>Choose Ethnicity</h1>
+  <h1>Choose Ethnicity</h1>
 
-    <div class="cards-grid grid-1">
-      <div class="option-card" data-value="White" style="background-image:url('images/white.png')">White</div>
-      <div class="option-card" data-value="Asian" style="background-image:url('images/asian.jpg')">Asian</div>
-      <div class="option-card" data-value="Arab" style="background-image:url('images/arab.jpg')">Arab</div>
-      <div class="option-card" data-value="Black" style="background-image:url('images/black.jpg')">Black</div>
-      <div class="option-card" data-value="Latina" style="background-image:url('images/latina.jpg')">Latina</div>
+  <div class="ethnicity-options">
+    <div class="ethnicity-card active" style="background-image: url('images/white.png')">
+      <div class="ethnicity-label">White</div>
     </div>
+    <div class="ethnicity-card" style="background-image: url('images/ethnicity_asian.jpg')">
+      <div class="ethnicity-label">Asian</div>
+    </div>
+    <div class="ethnicity-card" style="background-image: url('images/ethnicity_arab.jpg')">
+      <div class="ethnicity-label">Arab</div>
+    </div>
+    <div class="ethnicity-card" style="background-image: url('images/ethnicity_black.jpg')">
+      <div class="ethnicity-label">Black</div>
+    </div>
+    <div class="ethnicity-card" style="background-image: url('images/ethnicity_latina.jpg')">
+      <div class="ethnicity-label">Latina</div>
+    </div>
+  </div>
 
-    <div class="slider-block">
-      <label>Choose Age Range</label>
-      <input type="range" min="18" max="55" value="25" id="ageRange" />
-      <div class="slider-values"><span id="ageValue">25</span>+</div>
+  <div class="age-slider">
+    <div class="age-labels">
+      <span>18+</span>
+      <span>55+</span>
     </div>
+    <input type="range" min="18" max="55" value="25" class="slider" id="ageRange" />
+  </div>
 
-    <div class="buttons">
-      <button class="prev" data-prev="page1">Previous</button>
-      <button class="next" data-next="page3">Next</button>
-    </div>
-  </section>
+  <div class="buttons">
+    <button class="prev" data-prev="page1">Previous</button>
+    <button class="next" data-next="page3">Next</button>
+  </div>
+</section>
 
 
   <!-- ===== PAGE 3 ===== -->
