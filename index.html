@@ -36,219 +36,214 @@
     </div>
   </section>
 
-  <!-- ====== Страница 2 ====== -->
-  <section class="page" data-step="2">
+  <!-- ===== PAGE 2 ===== -->
+  <section class="page" id="page2">
     <div class="status">
-      <div class="dot" data-step="1">1</div>
-      <div class="dot active" data-step="2">2</div>
-      <div class="dot" data-step="3">3</div>
-      <div class="dot" data-step="4">4</div>
-      <div class="dot" data-step="5">5</div>
-      <div class="dot" data-step="6">6</div>
+      <div class="dot">1</div>
+      <div class="dot active">2</div>
+      <div class="dot">3</div>
+      <div class="dot">4</div>
+      <div class="dot">5</div>
+      <div class="dot">6</div>
     </div>
 
     <h1>Choose Ethnicity</h1>
+
     <div class="cards-grid grid-1">
-      <div class="option-card selectable" data-category="Ethnicity" data-value="White">White</div>
-      <img class="white" src="white.png">
-      </div>
-      <div class="option-card selectable" data-category="Ethnicity" data-value="Asian">Asian</div>
-      <div class="option-card selectable" data-category="Ethnicity" data-value="Arab">Arab</div>
-      <div class="option-card selectable" data-category="Ethnicity" data-value="Black">Black</div>
-      <div class="option-card selectable" data-category="Ethnicity" data-value="Latina">Latina</div>
+      <div class="option-card" data-value="White" style="background-image: url('images/white.jpg'); background-size: cover;">White</div>
+      <div class="option-card" data-value="Asian" style="background-image: url('images/asian.jpg'); background-size: cover;">Asian</div>
+      <div class="option-card" data-value="Arab" style="background-image: url('images/arab.jpg'); background-size: cover;">Arab</div>
+      <div class="option-card" data-value="Black" style="background-image: url('images/black.jpg'); background-size: cover;">Black</div>
+      <div class="option-card" data-value="Latina" style="background-image: url('images/latina.jpg'); background-size: cover;">Latina</div>
     </div>
 
     <div class="slider-block">
-      <label for="ageRange">Age Range</label>
-      <input type="range" id="ageRange" min="18" max="55" value="75" />
-      <div class="slider-values">18+ — 55+</div>
+      <label>Choose Age Range</label>
+      <input type="range" min="18" max="55" value="25" id="ageRange" />
+      <div class="slider-values"><span id="ageValue">25</span>+</div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="1">Previous</button>
-      <button class="next" data-next="3">Next</button>
+      <button class="prev" data-prev="page1">Previous</button>
+      <button class="next" data-next="page3">Next</button>
     </div>
   </section>
 
-  <!-- ====== Страница 3 ====== -->
-  <section class="page" data-step="3">
+
+  <!-- ===== PAGE 3 ===== -->
+  <section class="page" id="page3">
     <div class="status">
-      <div class="dot" data-step="1">1</div>
-      <div class="dot" data-step="2">2</div>
-      <div class="dot active" data-step="3">3</div>
-      <div class="dot" data-step="4">4</div>
-      <div class="dot" data-step="5">5</div>
-      <div class="dot" data-step="6">6</div>
+      <div class="dot">1</div>
+      <div class="dot">2</div>
+      <div class="dot active">3</div>
+      <div class="dot">4</div>
+      <div class="dot">5</div>
+      <div class="dot">6</div>
     </div>
 
     <h1>Choose Body Type</h1>
     <div class="cards-grid grid-4">
-      <div class="option-card selectable" data-category="Body Type" data-value="Slim">Slim</div>
-      <div class="option-card selectable" data-category="Body Type" data-value="Athletic">Athletic</div>
-      <div class="option-card selectable" data-category="Body Type" data-value="Voluptuous">Voluptuous</div>
-      <div class="option-card selectable" data-category="Body Type" data-value="Curvy">Curvy</div>
+      <div class="option-card" data-value="Slim" style="background-image: url('images/slim.jpg'); background-size: cover;">Slim</div>
+      <div class="option-card" data-value="Athletic" style="background-image: url('images/athletic.jpg'); background-size: cover;">Athletic</div>
+      <div class="option-card" data-value="Voluptuous" style="background-image: url('images/voluptuous.jpg'); background-size: cover;">Voluptuous</div>
+      <div class="option-card" data-value="Curvy" style="background-image: url('images/curvy.jpg'); background-size: cover;">Curvy</div>
     </div>
 
     <h1>Choose Breast Size</h1>
     <div class="cards-grid grid-4">
-      <div class="option-card selectable" data-category="Breast Size" data-value="Small">Small</div>
-      <div class="option-card selectable" data-category="Breast Size" data-value="Medium">Medium</div>
-      <div class="option-card selectable" data-category="Breast Size" data-value="Large">Large</div>
-      <div class="option-card selectable" data-category="Breast Size" data-value="Huge">Huge</div>
+      <div class="option-card" data-value="Small" style="background-image: url('images/small.jpg'); background-size: cover;">Small</div>
+      <div class="option-card" data-value="Medium" style="background-image: url('images/medium.jpg'); background-size: cover;">Medium</div>
+      <div class="option-card" data-value="Large" style="background-image: url('images/large.jpg'); background-size: cover;">Large</div>
+      <div class="option-card" data-value="Huge" style="background-image: url('images/huge.jpg'); background-size: cover;">Huge</div>
     </div>
 
     <h1>Choose Butt Size</h1>
     <div class="cards-grid grid-4">
-      <div class="option-card selectable" data-category="Butt Size" data-value="Skinny">Skinny</div>
-      <div class="option-card selectable" data-category="Butt Size" data-value="Medium">Medium</div>
-      <div class="option-card selectable" data-category="Butt Size" data-value="Athletic">Athletic</div>
-      <div class="option-card selectable" data-category="Butt Size" data-value="Large">Large</div>
+      <div class="option-card" data-value="Skinny" style="background-image: url('images/skinny.jpg'); background-size: cover;">Skinny</div>
+      <div class="option-card" data-value="Medium" style="background-image: url('images/butt_medium.jpg'); background-size: cover;">Medium</div>
+      <div class="option-card" data-value="Athletic" style="background-image: url('images/butt_athletic.jpg'); background-size: cover;">Athletic</div>
+      <div class="option-card" data-value="Large" style="background-image: url('images/butt_large.jpg'); background-size: cover;">Large</div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="2">Previous</button>
-      <button class="next" data-next="4">Next</button>
+      <button class="prev" data-prev="page2">Previous</button>
+      <button class="next" data-next="page4">Next</button>
     </div>
   </section>
 
-  <!-- ====== Страница 4 ====== -->
-  <section class="page" data-step="4">
+
+  <!-- ===== PAGE 4 ===== -->
+  <section class="page" id="page4">
     <div class="status">
-      <div class="dot" data-step="1">1</div>
-      <div class="dot" data-step="2">2</div>
-      <div class="dot" data-step="3">3</div>
-      <div class="dot active" data-step="4">4</div>
-      <div class="dot" data-step="5">5</div>
-      <div class="dot" data-step="6">6</div>
+      <div class="dot">1</div>
+      <div class="dot">2</div>
+      <div class="dot">3</div>
+      <div class="dot active">4</div>
+      <div class="dot">5</div>
+      <div class="dot">6</div>
     </div>
 
     <h1>Choose Hair Style</h1>
     <div class="cards-grid grid-6">
-      <div class="option-card selectable" data-category="Hair Style" data-value="Straight">Straight</div>
-      <div class="option-card selectable" data-category="Hair Style" data-value="Short">Short</div>
-      <div class="option-card selectable" data-category="Hair Style" data-value="Braids">Braids</div>
-      <div class="option-card selectable" data-category="Hair Style" data-value="Bun">Bun</div>
-      <div class="option-card selectable" data-category="Hair Style" data-value="Curly">Curly</div>
-      <div class="option-card selectable" data-category="Hair Style" data-value="Ponytail">Ponytail</div>
+      <div class="option-card" data-value="Straight" style="background-image: url('images/straight.jpg'); background-size: cover;">Straight</div>
+      <div class="option-card" data-value="Short" style="background-image: url('images/short.jpg'); background-size: cover;">Short</div>
+      <div class="option-card" data-value="Braids" style="background-image: url('images/braids.jpg'); background-size: cover;">Braids</div>
+      <div class="option-card" data-value="Bun" style="background-image: url('images/bun.jpg'); background-size: cover;">Bun</div>
+      <div class="option-card" data-value="Curly" style="background-image: url('images/curly.jpg'); background-size: cover;">Curly</div>
+      <div class="option-card" data-value="Ponytail" style="background-image: url('images/ponytail.jpg'); background-size: cover;">Ponytail</div>
     </div>
 
     <h1>Choose Hair Color</h1>
     <div class="cards-grid grid-5">
-      <div class="option-card selectable" data-category="Hair Color" data-value="Blondie">Blondie</div>
-      <div class="option-card selectable" data-category="Hair Color" data-value="Brunette">Brunette</div>
-      <div class="option-card selectable" data-category="Hair Color" data-value="Black">Black</div>
-      <div class="option-card selectable" data-category="Hair Color" data-value="Pink">Pink</div>
-      <div class="option-card selectable" data-category="Hair Color" data-value="Redhead">Redhead</div>
+      <div class="option-card" data-value="Blondie" style="background-image: url('images/blondie.jpg'); background-size: cover;">Blondie</div>
+      <div class="option-card" data-value="Brunette" style="background-image: url('images/brunette.jpg'); background-size: cover;">Brunette</div>
+      <div class="option-card" data-value="Black" style="background-image: url('images/hair_black.jpg'); background-size: cover;">Black</div>
+      <div class="option-card" data-value="Pink" style="background-image: url('images/pink.jpg'); background-size: cover;">Pink</div>
+      <div class="option-card" data-value="Redhead" style="background-image: url('images/redhead.jpg'); background-size: cover;">Redhead</div>
     </div>
 
     <h1>Choose Eye Color</h1>
     <div class="cards-grid grid-3">
-      <div class="option-card selectable" data-category="Eye Color" data-value="Blue">Blue</div>
-      <div class="option-card selectable" data-category="Eye Color" data-value="Brown">Brown</div>
-      <div class="option-card selectable" data-category="Eye Color" data-value="Green">Green</div>
+      <div class="option-card" data-value="Blue" style="background-image: url('images/blue_eyes.jpg'); background-size: cover;">Blue</div>
+      <div class="option-card" data-value="Brown" style="background-image: url('images/brown_eyes.jpg'); background-size: cover;">Brown</div>
+      <div class="option-card" data-value="Green" style="background-image: url('images/green_eyes.jpg'); background-size: cover;">Green</div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="3">Previous</button>
-      <button class="next" data-next="5">Next</button>
+      <button class="prev" data-prev="page3">Previous</button>
+      <button class="next" data-next="page5">Next</button>
     </div>
   </section>
 
-  <!-- ====== Страница 5 ====== -->
-  <section class="page" data-step="5">
+
+  <!-- ===== PAGE 5 ===== -->
+  <section class="page" id="page5">
     <div class="status">
-      <div class="dot" data-step="1">1</div>
-      <div class="dot" data-step="2">2</div>
-      <div class="dot" data-step="3">3</div>
-      <div class="dot" data-step="4">4</div>
-      <div class="dot active" data-step="5">5</div>
-      <div class="dot" data-step="6">6</div>
+      <div class="dot">1</div>
+      <div class="dot">2</div>
+      <div class="dot">3</div>
+      <div class="dot">4</div>
+      <div class="dot active">5</div>
+      <div class="dot">6</div>
     </div>
 
     <h1>Choose Voice</h1>
     <div class="cards-grid grid-4">
-      <div class="option-card selectable" data-category="Voice" data-value="Voice 1 Innocent">Voice 1 Innocent</div>
-      <div class="option-card selectable" data-category="Voice" data-value="Voice 2 Standard">Voice 2 Standard</div>
-      <div class="option-card selectable" data-category="Voice" data-value="Seductress">Seductress</div>
-      <div class="option-card selectable" data-category="Voice" data-value="Voice 4 Dominant">Voice 4 Dominant</div>
+      <div class="option-card" data-value="Voice 1 Innocent" style="background-image: url('images/voice1.jpg'); background-size: cover;">Voice 1 Innocent</div>
+      <div class="option-card" data-value="Voice 2 Standard" style="background-image: url('images/voice2.jpg'); background-size: cover;">Voice 2 Standard</div>
+      <div class="option-card" data-value="Seductress" style="background-image: url('images/voice3.jpg'); background-size: cover;">Seductress</div>
+      <div class="option-card" data-value="Voice 4 Dominant" style="background-image: url('images/voice4.jpg'); background-size: cover;">Voice 4 Dominant</div>
     </div>
 
     <h1>Choose Relationship</h1>
     <div class="cards-grid grid-2">
-      <div class="option-card selectable" data-category="Relationship" data-value="Step Sister">Step Sister</div>
-      <div class="option-card selectable" data-category="Relationship" data-value="Step Mom">Step Mom</div>
-      <div class="option-card selectable" data-category="Relationship" data-value="Girlfriend">Girlfriend</div>
-      <div class="option-card selectable" data-category="Relationship" data-value="Sex Friend">Sex Friend</div>
+      <div class="option-card" data-value="Step Sister" style="background-image: url('images/stepsister.jpg'); background-size: cover;">Step Sister</div>
+      <div class="option-card" data-value="Step Mom" style="background-image: url('images/stepmom.jpg'); background-size: cover;">Step Mom</div>
+      <div class="option-card" data-value="Girlfriend" style="background-image: url('images/girlfriend.jpg'); background-size: cover;">Girlfriend</div>
+      <div class="option-card" data-value="Sex Friend" style="background-image: url('images/sexfriend.jpg'); background-size: cover;">Sex Friend</div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="4">Previous</button>
-      <button class="next" data-next="6">Next</button>
+      <button class="prev" data-prev="page4">Previous</button>
+      <button class="next" data-next="page6">Next</button>
     </div>
   </section>
 
-  <!-- ====== Страница 6 (Summary) ====== -->
-  <section class="page" data-step="6">
+
+  <!-- ===== PAGE 6 ===== -->
+  <section class="page" id="page6">
     <div class="status">
-      <div class="dot" data-step="1">1</div>
-      <div class="dot" data-step="2">2</div>
-      <div class="dot" data-step="3">3</div>
-      <div class="dot" data-step="4">4</div>
-      <div class="dot" data-step="5">5</div>
-      <div class="dot active" data-step="6">6</div>
+      <div class="dot">1</div>
+      <div class="dot">2</div>
+      <div class="dot">3</div>
+      <div class="dot">4</div>
+      <div class="dot">5</div>
+      <div class="dot active">6</div>
     </div>
 
     <h1>Summary</h1>
-    <div id="summary"></div>
+    <div id="summary">
+      <div class="summary-item"><strong>Style:</strong> Realistic</div>
+      <div class="summary-item"><strong>Ethnicity:</strong> Latina</div>
+      <div class="summary-item"><strong>Body Type:</strong> Athletic</div>
+      <div class="summary-item"><strong>Hair Style:</strong> Ponytail</div>
+      <div class="summary-item"><strong>Hair Color:</strong> Brunette</div>
+      <div class="summary-item"><strong>Eye Color:</strong> Green</div>
+      <div class="summary-item"><strong>Voice:</strong> Seductress</div>
+      <div class="summary-item"><strong>Relationship:</strong> Girlfriend</div>
+    </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="5">Previous</button>
+      <button class="prev" data-prev="page5">Previous</button>
       <button class="next">Bring My AI to Live</button>
     </div>
   </section>
 
-  <!-- ====== SCRIPT ====== -->
   <script>
+    // Навигация между страницами
     const pages = document.querySelectorAll('.page');
-    const nextButtons = document.querySelectorAll('.next');
-    const prevButtons = document.querySelectorAll('.prev');
-    const selectableCards = document.querySelectorAll('.selectable');
-    const summaryContainer = document.getElementById('summary');
-    const selections = {};
+    const buttonsNext = document.querySelectorAll('.next');
+    const buttonsPrev = document.querySelectorAll('.prev');
 
-    // Навигация
-    function showPage(step) {
-      pages.forEach(page => {
-        page.classList.toggle('active', page.dataset.step === step.toString());
-      });
-      if (step === '6') updateSummary();
+    function showPage(id) {
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
-    nextButtons.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.next)));
-    prevButtons.forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.prev)));
-
-    // Выбор карточек
-    selectableCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const category = card.dataset.category;
-        const value = card.dataset.value;
-        const siblings = [...document.querySelectorAll(`.selectable[data-category='${category}']`)];
-        siblings.forEach(el => el.classList.remove('selected'));
-        card.classList.add('selected');
-        selections[category] = value;
+    buttonsNext.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const next = btn.dataset.next;
+        if (next) showPage(next);
       });
     });
 
-    // Обновление Summary
-    function updateSummary() {
-      summaryContainer.innerHTML = '';
-      Object.entries(selections).forEach(([category, value]) => {
-        const div = document.createElement('div');
-        div.className = 'summary-item';
-        div.innerHTML = `<strong>${category}:</strong> ${value}`;
-        summaryContainer.appendChild(div);
+    buttonsPrev.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const prev = btn.dataset.prev;
+        if (prev) showPage(prev);
       });
-    }
+    });
   </script>
+
 </body>
 </html>
