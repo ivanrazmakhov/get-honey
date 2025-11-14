@@ -1,181 +1,186 @@
 /* ====== GLOBAL ====== */
 
-body {
+* {
     margin: 0;
     padding: 0;
-    background: #000;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-}
-
-.page {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
-    padding: 25px;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-.page.active {
-    display: block;
+body {
+    background: #0d0d0f;
+    color: #fff;
+    padding-bottom: 80px;
 }
 
-/* ====== TITLES ====== */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+}
 
 h2 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 18px;
+    margin: 25px 0 10px;
+    font-size: 22px;
+    text-align: center;
 }
 
 /* ====== STATUS BAR ====== */
 
-.status-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 25px;
-    gap: 10px;
+#statusBar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #1a1a1d;
+    padding: 15px 0;
+    text-align: center;
+    z-index: 999;
+    font-size: 20px;
+    border-bottom: 1px solid #2a2a2e;
 }
 
-.status-step {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    border: 2px solid #444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #666;
-    font-size: 14px;
-    font-weight: 600;
+/* ====== PAGE SYSTEM ====== */
+
+.page {
+    display: none;
+    padding: 20px;
+    opacity: 0;
+    animation: fadeIn .3s forwards;
 }
 
-.status-step.active {
-    border-color: #ff3b7f;
-    color: #ff3b7f;
+.page.active {
+    display: block;
+    opacity: 1;
 }
 
-/* ========================= */
-/* ====== GRID SYSTEM ====== */
-/* ========================= */
-
-.blocks-grid {
-    display: grid;
-    gap: 12px;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* Колонки */
-.blocks-2col {
-    grid-template-columns: repeat(2, 1fr);
-}
+/* ====== SELECT BLOCKS ====== */
 
-.blocks-3col {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.blocks-4col {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-/* ============================== */
-/* ====== UNIVERSAL OPTION ====== */
-/* ============================== */
-
-/* Universal block wrapper */
-.option {
-    background: #1a1a1a;
-    border: 2px solid #2a2a2a;
-    border-radius: 14px;
-    padding: 0;
+.select-block {
+    background: #161618;
+    border-radius: 16px;
     overflow: hidden;
+    border: 2px solid #2a2a2e;
     cursor: pointer;
     transition: 0.25s;
-    text-align: center;
+    position: relative;
 }
 
-/* Hover + active */
-.option:hover {
-    border-color: #ff3b7f;
+.select-block:hover {
+    transform: scale(1.03);
+    border-color: #6366f1;
 }
 
-.option.selected {
-    border-color: #ff3b7f;
-    background: #26121b;
+/* Highlight selected option */
+.select-block.selected {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
 }
 
-/* ============================== */
-/* ====== IMAGE HANDLING ======= */
-/* ============================== */
-
-/* Обработчик изображений: авторазмер в любых блоках */
-.option img {
+/* Image auto-fitting: the block grows to the image height */
+.select-block img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* ============================== */
-/* ====== TEXT BLOCK OPTION ===== */
-/* ============================== */
-
-.option-text {
-    padding: 20px;
-    background: #1a1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
+/* Label inside the block */
+.select-block p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.55);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
 }
 
-/* ============================== */
-/* ====== BUTTONS ======= */
-/* ============================== */
+/* ====== GRID SYSTEM ====== */
+
+.grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-2 {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .grid-3 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* ====== BUTTONS ====== */
 
 .buttons {
-    margin-top: 35px;
+    margin-top: 30px;
     display: flex;
-    justify-content: space-between;
-    gap: 14px;
+    justify-content: center;
+    gap: 15px;
 }
 
-.btn {
-    flex: 1;
-    background: #ff3b7f;
+button {
+    padding: 14px 26px;
+    border-radius: 12px;
     border: none;
-    padding: 16px 0;
-    border-radius: 14px;
     font-size: 18px;
-    font-weight: 600;
     cursor: pointer;
-    transition: 0.25s;
+    background: #3b3bff;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
-.btn:hover {
-    background: #ff5c94;
+button:hover {
+    background: #5b5bff;
 }
 
-.btn.black {
-    background: #111;
-    border: 2px solid #2a2a2a;
+button.back {
+    background: #2a2a2e;
 }
 
-.btn.black:hover {
-    border-color: #444;
+button.back:hover {
+    background: #3a3a3f;
 }
 
-/* ============================== */
-/* ====== SUMMARY PAGE ======= */
-/* ============================== */
+/* ====== SUMMARY PAGE ====== */
 
-.summary-block {
-    background: #131313;
-    padding: 18px;
-    border-radius: 14px;
-    margin-bottom: 12px;
-    border: 1px solid #222;
+#summary {
+    margin-top: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.summary-title {
+.summary-row {
+    background: #161618;
+    border: 1px solid #2a2a2e;
+    padding: 12px;
+    border-radius: 12px;
     font-size: 18px;
-    opacity: 0.8;
 }
