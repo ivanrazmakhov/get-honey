@@ -1,100 +1,93 @@
-// ===== PAGE SYSTEM ===== //
+/* ================================
+   GLOBAL STATE
+================================= */
 
-let currentPage = 1;
-const totalPages = 6;
-
-function showPage(pageNumber) {
-    currentPage = pageNumber;
-
-    document.querySelectorAll(".page").forEach((page, index) => {
-        page.classList.remove("active");
-        if (index + 1 === pageNumber) {
-            page.classList.add("active");
-        }
-    });
-
-    // Update status bar
-    document.getElementById("statusBar").innerText = `Step ${pageNumber} of 6`;
-
-    if (pageNumber === 6) generateSummary();
-}
-
-function nextPage() {
-    if (currentPage < totalPages) {
-        showPage(currentPage + 1);
-    }
-}
-
-function prevPage() {
-    if (currentPage > 1) {
-        showPage(currentPage - 1);
-    }
-}
-
-showPage(1); // Initial page
-
-
-// ====== USER SELECTION STORAGE ====== //
-
-let selections = {
+let state = {
     style: null,
     ethnicity: null,
-    body: null,
+    bodyType: null,
     breast: null,
     butt: null,
-    hairstyle: null,
-    haircolor: null,
-    eyecolor: null,
+    hairStyle: null,
+    hairColor: null,
+    eyeColor: null,
     voice: null,
     relationship: null
 };
 
+/* ================================
+   PAGE NAVIGATION
+================================= */
 
-// ====== SELECTION HANDLER ====== //
+function goToPage(pageNum) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + pageNum).classList.add('active');
+    updateStatusBar(pageNum);
 
-function selectOption(group, element, labelText) {
-    selections[group] = labelText;
-
-    // Remove selection highlight
-    element.parentElement.querySelectorAll(".select-block").forEach(block => {
-        block.classList.remove("selected");
-    });
-
-    // Highlight the chosen block
-    element.classList.add("selected");
+    if (pageNum === 6) {
+        updateSummary();
+    }
 }
 
+function nextPage(current) {
+    goToPage(current + 1);
+}
 
-// ====== AUTO-BIND ALL CARDS ====== //
-// Any element with data-group="" and data-label="" will automatically work.
+function prevPage(current) {
+    goToPage(current - 1);
+}
 
-document.querySelectorAll("[data-group]").forEach(block => {
-    block.addEventListener("click", () => {
-        const group = block.getAttribute("data-group");
-        const label = block.getAttribute("data-label");
+/* ================================
+   STATUS BAR
+================================= */
 
-        selectOption(group, block, label);
+function updateStatusBar(activeStep) {
+    const bar = document.getElementById('statusBar');
+    bar.textContent = `Step ${activeStep} / 6`;
+}
+
+/* ================================
+   SELECTION SYSTEM
+================================= */
+
+document.querySelectorAll('.select-block').forEach(block => {
+    block.addEventListener('click', () => {
+        const group = block.dataset.group;
+        const value = block.dataset.value;
+
+        /* remove previous selection */
+        document.querySelectorAll(`.select-block[data-group="${group}"]`)
+            .forEach(b => b.classList.remove('selected'));
+
+        /* set new selection */
+        block.classList.add('selected');
+        state[group] = value;
     });
 });
 
+/* ================================
+   SUMMARY
+================================= */
 
-// ====== SUMMARY BUILDER ====== //
+function updateSummary() {
+    const summary = document.getElementById('summary');
 
-function generateSummary() {
-    const summaryContainer = document.getElementById("summary");
-    summaryContainer.innerHTML = "";
-
-    for (const key in selections) {
-        const value = selections[key];
-
-        const row = document.createElement("div");
-        row.className = "summary-row";
-
-        row.innerHTML = `
-            <strong>${key.replace(/^\w/, c => c.toUpperCase())}:</strong> 
-            ${value ? value : "<span style='opacity:0.5'>Not selected</span>"}
-        `;
-
-        summaryContainer.appendChild(row);
-    }
+    summary.innerHTML = `
+        <p><strong>Style:</strong> ${state.style ?? 'Not selected'}</p>
+        <p><strong>Ethnicity:</strong> ${state.ethnicity ?? 'Not selected'}</p>
+        <p><strong>Body Type:</strong> ${state.bodyType ?? 'Not selected'}</p>
+        <p><strong>Breast Size:</strong> ${state.breast ?? 'Not selected'}</p>
+        <p><strong>Butt Size:</strong> ${state.butt ?? 'Not selected'}</p>
+        <p><strong>Hair Style:</strong> ${state.hairStyle ?? 'Not selected'}</p>
+        <p><strong>Hair Color:</strong> ${state.hairColor ?? 'Not selected'}</p>
+        <p><strong>Eye Color:</strong> ${state.eyeColor ?? 'Not selected'}</p>
+        <p><strong>Voice:</strong> ${state.voice ?? 'Not selected'}</p>
+        <p><strong>Relationship:</strong> ${state.relationship ?? 'Not selected'}</p>
+    `;
 }
+
+/* ================================
+   INIT
+================================= */
+
+goToPage(1);
