@@ -22,28 +22,25 @@ let state = {
 function goToPage(pageNum) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page' + pageNum).classList.add('active');
-    updateStatusBar(pageNum);
 
-    if (pageNum === 6) {
-        updateSummary();
-    }
+    document.getElementById('statusBar').innerText = `Step ${pageNum} of 6`;
+
+    if (pageNum === 6) updateSummary();
 }
 
-function nextPage(current) {
+function nextPage() {
+    let current = getCurrentPage();
     goToPage(current + 1);
 }
 
-function prevPage(current) {
+function prevPage() {
+    let current = getCurrentPage();
     goToPage(current - 1);
 }
 
-/* ================================
-   STATUS BAR
-================================= */
-
-function updateStatusBar(activeStep) {
-    const bar = document.getElementById('statusBar');
-    bar.textContent = `Step ${activeStep} / 6`;
+function getCurrentPage() {
+    let pages = [...document.querySelectorAll('.page')];
+    return pages.findIndex(p => p.classList.contains('active')) + 1;
 }
 
 /* ================================
@@ -53,14 +50,16 @@ function updateStatusBar(activeStep) {
 document.querySelectorAll('.select-block').forEach(block => {
     block.addEventListener('click', () => {
         const group = block.dataset.group;
-        const value = block.dataset.value;
+        const value = block.dataset.label;  // <— FIXED
 
-        /* remove previous selection */
+        // remove highlight from others
         document.querySelectorAll(`.select-block[data-group="${group}"]`)
             .forEach(b => b.classList.remove('selected'));
 
-        /* set new selection */
+        // highlight this one
         block.classList.add('selected');
+
+        // save selection
         state[group] = value;
     });
 });
@@ -70,9 +69,9 @@ document.querySelectorAll('.select-block').forEach(block => {
 ================================= */
 
 function updateSummary() {
-    const summary = document.getElementById('summary');
+    const s = document.getElementById('summary');
 
-    summary.innerHTML = `
+    s.innerHTML = `
         <p><strong>Style:</strong> ${state.style ?? 'Not selected'}</p>
         <p><strong>Ethnicity:</strong> ${state.ethnicity ?? 'Not selected'}</p>
         <p><strong>Body Type:</strong> ${state.bodyType ?? 'Not selected'}</p>
