@@ -69,20 +69,41 @@ document.querySelectorAll('.select-block').forEach(block => {
 ================================= */
 
 function updateSummary() {
-    const s = document.getElementById('summary');
+    const container = document.getElementById('summary');
+    container.innerHTML = '';
 
-    s.innerHTML = `
-        <p><strong>Style:</strong> ${state.style ?? 'Not selected'}</p>
-        <p><strong>Ethnicity:</strong> ${state.ethnicity ?? 'Not selected'}</p>
-        <p><strong>Body Type:</strong> ${state.bodyType ?? 'Not selected'}</p>
-        <p><strong>Breast Size:</strong> ${state.breast ?? 'Not selected'}</p>
-        <p><strong>Butt Size:</strong> ${state.butt ?? 'Not selected'}</p>
-        <p><strong>Hair Style:</strong> ${state.hairStyle ?? 'Not selected'}</p>
-        <p><strong>Hair Color:</strong> ${state.hairColor ?? 'Not selected'}</p>
-        <p><strong>Eye Color:</strong> ${state.eyeColor ?? 'Not selected'}</p>
-        <p><strong>Voice:</strong> ${state.voice ?? 'Not selected'}</p>
-        <p><strong>Relationship:</strong> ${state.relationship ?? 'Not selected'}</p>
-    `;
+    const groups = [
+        ['style', 'Style'],
+        ['ethnicity', 'Ethnicity'],
+        ['bodyType', 'Body Type'],
+        ['breast', 'Breast Size'],
+        ['butt', 'Butt Size'],
+        ['hairStyle', 'Hair Style'],
+        ['hairColor', 'Hair Color'],
+        ['eyeColor', 'Eye Color'],
+        ['voice', 'Voice'],
+        ['relationship', 'Relationship']
+    ];
+
+    groups.forEach(([key, title]) => {
+        const value = state[key];
+
+        if (!value) return;
+
+        // ищем выбранный блок по data-group и data-label
+        const block = document.querySelector(
+            `.select-block.selected[data-group="${key}"]`
+        );
+
+        if (!block) return;
+
+        // клонируем объект
+        const clone = block.cloneNode(true);
+        clone.classList.remove('selected');
+        clone.classList.add('summary-card');
+
+        container.appendChild(clone);
+    });
 }
 
 /* ================================
