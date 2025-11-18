@@ -3,269 +3,293 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Character Builder</title>
+    <title>AI Builder</title>
 
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- Status Bar -->
-    <div id="statusBar">1 / 6</div>
+<!-- ===== STATUS BAR ===== -->
+<div id="statusBar">Step 1 of 6</div>
 
-    <!-- MAIN CONTAINER -->
-    <div id="app">
+<!-- ===== PAGE 1 — Choose Style ===== -->
+<div class="page active" id="page1">
+    <h1>Choose Style</h1>
 
-        <!-- PAGE 1 — STYLE -->
-        <section class="page" id="page1">
-            <h1>Choose Style</h1>
-            <div class="grid">
-                <div class="select-block" data-group="style" data-value="Realistic">
-                    <img src="845430.mp4" alt="">
-                    <p>Realistic</p>
-                </div>
-                <div class="select-block" data-group="style" data-value="Anime">
-                    <img src="845430-2.mp4" alt="">
-                    <p>Anime</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <button class="next">Next</button>
-            </div>
-        </section>
+    <div class="grid-2">
+        <div class="select-block"
+             data-group="style"
+             data-label="Realistic">
+            <img src="845430.mp4" alt="">
+            <p>Realistic</p>
+        </div>
 
-        <!-- PAGE 2 — APPEARANCE -->
-        <section class="page" id="page2">
-            <h1>Choose Appearance</h1>
-            <div class="grid-3">
-                <div class="select-block" data-group="ethnicity" data-value="White">
-                    <img src="images/white.png" alt="">
-                    <p>White</p>
-                </div>
-                <div class="select-block" data-group="ethnicity" data-value="Asian">
-                    <img src="images/eth_asian.jpg" alt="">
-                    <p>Asian</p>
-                </div>
-                <div class="select-block" data-group="ethnicity" data-value="Arab">
-                    <img src="images/eth_arab.jpg" alt="">
-                    <p>Arab</p>
-                </div>
-                <div class="select-block" data-group="ethnicity" data-value="Black">
-                    <img src="images/eth_black.jpg" alt="">
-                    <p>Black</p>
-                </div>
-                <div class="select-block" data-group="ethnicity" data-value="Latina">
-                    <img src="images/eth_latina.jpg" alt="">
-                    <p>Latina</p>
-                </div>
-            </div>
-
-            <h2>Choose Body Type</h2>
-            <div class="grid-2">
-                <div class="select-block" data-group="body" data-value="Slim">
-                    <img src="images/body_slim.jpg" alt="">
-                    <p>Slim</p>
-                </div>
-                <div class="select-block" data-group="body" data-value="Athletic">
-                    <img src="images/body_athletic.jpg" alt="">
-                    <p>Athletic</p>
-                </div>
-                <div class="select-block" data-group="body" data-value="Voluptuous">
-                    <img src="images/body_voluptuous.jpg" alt="">
-                    <p>Voluptuous</p>
-                </div>
-                <div class="select-block" data-group="body" data-value="Curvy">
-                    <img src="images/body_curvy.jpg" alt="">
-                    <p>Curvy</p>
-                </div>
-            </div>
-
-            <h2>Choose Breast Size</h2>
-            <div class="grid-2">
-                <div class="select-block" data-group="breasts" data-value="S">
-                    <img src="images/breast_s.jpg" alt="">
-                    <p>Small</p>
-                </div>
-                <div class="select-block" data-group="breasts" data-value="M">
-                    <img src="images/breast_m.jpg" alt="">
-                    <p>Medium</p>
-                </div>
-                <div class="select-block" data-group="breasts" data-value="L">
-                    <img src="images/breast_l.jpg" alt="">
-                    <p>Large</p>
-                </div>
-                <div class="select-block" data-group="breasts" data-value="XL">
-                    <img src="images/breast_xl.jpg" alt="">
-                    <p>XL</p>
-                </div>
-            </div>
-
-            <h2>Choose Butt Size</h2>
-            <div class="grid-2">
-                <div class="select-block" data-group="butt" data-value="S">
-                    <img src="images/butt_s.jpg" alt="">
-                    <p>Small</p>
-                </div>
-                <div class="select-block" data-group="butt" data-value="M">
-                    <img src="images/butt_m.jpg" alt="">
-                    <p>Medium</p>
-                </div>
-                <div class="select-block" data-group="butt" data-value="Athletic">
-                    <img src="images/butt_athletic.jpg" alt="">
-                    <p>Athletic</p>
-                </div>
-                <div class="select-block" data-group="butt" data-value="L">
-                    <img src="images/butt_l.jpg" alt="">
-                    <p>Large</p>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <button class="back">Back</button>
-                <button class="next">Next</button>
-            </div>
-        </section>
-
-        <!-- PAGE 3 — HAIR -->
-        <section class="page" id="page3">
-            <h1>Choose Hair Style</h1>
-
-            <div class="grid-3">
-                <div class="select-block" data-group="hairstyle" data-value="Straight">
-                    <img src="images/hair_straight.jpg">
-                    <p>Straight</p>
-                </div>
-                <div class="select-block" data-group="hairstyle" data-value="Short">
-                    <img src="images/hair_short.jpg">
-                    <p>Short</p>
-                </div>
-                <div class="select-block" data-group="hairstyle" data-value="Braids">
-                    <img src="images/hair_braids.jpg">
-                    <p>Braids</p>
-                </div>
-                <div class="select-block" data-group="hairstyle" data-value="Bun">
-                    <img src="images/hair_bun.jpg">
-                    <p>Bun</p>
-                </div>
-                <div class="select-block" data-group="hairstyle" data-value="Curly">
-                    <img src="images/hair_curly.jpg">
-                    <p>Curly</p>
-                </div>
-                <div class="select-block" data-group="hairstyle" data-value="Ponytail">
-                    <img src="images/hair_ponytail.jpg">
-                    <p>Ponytail</p>
-                </div>
-            </div>
-
-            <h2>Hair Color</h2>
-            <div class="grid-3">
-                <div class="select-block" data-group="haircolor" data-value="Blonde">
-                    <img src="images/color_blonde.jpg">
-                    <p>Blonde</p>
-                </div>
-                <div class="select-block" data-group="haircolor" data-value="Brunette">
-                    <img src="images/color_brunette.jpg">
-                    <p>Brunette</p>
-                </div>
-                <div class="select-block" data-group="haircolor" data-value="Black">
-                    <img src="images/color_black.jpg">
-                    <p>Black</p>
-                </div>
-                <div class="select-block" data-group="haircolor" data-value="Pink">
-                    <img src="images/color_pink.jpg">
-                    <p>Pink</p>
-                </div>
-                <div class="select-block" data-group="haircolor" data-value="Red">
-                    <img src="images/color_red.jpg">
-                    <p>Red</p>
-                </div>
-            </div>
-
-            <h2>Eye Color</h2>
-            <div class="grid-3">
-                <div class="select-block" data-group="eyes" data-value="Blue">
-                    <img src="images/eye_blue.jpg">
-                    <p>Blue</p>
-                </div>
-                <div class="select-block" data-group="eyes" data-value="Brown">
-                    <img src="images/eye_brown.jpg">
-                    <p>Brown</p>
-                </div>
-                <div class="select-block" data-group="eyes" data-value="Green">
-                    <img src="images/eye_green.jpg">
-                    <p>Green</p>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <button class="back">Back</button>
-                <button class="next">Next</button>
-            </div>
-        </section>
-
-        <!-- PAGE 4 — BODY PARTS OR DETAILS IF NEEDED (OPTIONAL) -->
-        <section class="page" id="page4">
-            <h1>Choose Voice</h1>
-
-            <div class="grid-2">
-                <div class="select-block" data-group="voice" data-value="Innocent">
-                    <img src="images/voice1.jpg">
-                    <p>Voice 1 Innocent</p>
-                </div>
-                <div class="select-block" data-group="voice" data-value="Standard">
-                    <img src="images/voice2.jpg">
-                    <p>Voice 2 Standard</p>
-                </div>
-                <div class="select-block" data-group="voice" data-value="Seductress">
-                    <img src="images/voice3.jpg">
-                    <p>Seductress</p>
-                </div>
-                <div class="select-block" data-group="voice" data-value="Dominant">
-                    <img src="images/voice4.jpg">
-                    <p>Voice 4 Dominant</p>
-                </div>
-            </div>
-
-            <h2>Choose Relationship</h2>
-            <div class="grid-2">
-                <div class="select-block" data-group="relationship" data-value="Step Sister">
-                    <img src="images/rel_stepsis.jpg">
-                    <p>Step Sister</p>
-                </div>
-                <div class="select-block" data-group="relationship" data-value="Step Mom">
-                    <img src="images/rel_stepmom.jpg">
-                    <p>Step Mom</p>
-                </div>
-                <div class="select-block" data-group="relationship" data-value="Girlfriend">
-                    <img src="images/rel_gf.jpg">
-                    <p>Girlfriend</p>
-                </div>
-                <div class="select-block" data-group="relationship" data-value="Sex Friend">
-                    <img src="images/rel_friend.jpg">
-                    <p>Sex Friend</p>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <button class="back">Back</button>
-                <button class="next">Next</button>
-            </div>
-        </section>
-
-        <!-- PAGE 5 — SUMMARY -->
-        <section class="page" id="page5">
-            <h1>Summary</h1>
-
-            <div id="summary"></div>
-
-            <div class="buttons">
-                <button class="back">Back</button>
-                <button id="finalBtn">Bring My AI to Life</button>
-            </div>
-        </section>
-
+        <div class="select-block"
+             data-group="style"
+             data-label="Anime">
+            <img src="845430-2.mp4" alt="">
+            <p>Anime</p>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="buttons">
+        <button onclick="nextPage()">Next</button>
+    </div>
+</div>
 
+
+<!-- ===== PAGE 2 — Choose Ethnicity ===== -->
+<div class="page" id="page2">
+    <h1>Choose Ethnicity</h1>
+
+    <div class="grid-1">
+        <div class="select-block" data-group="ethnicity" data-label="White">
+            <img src="images/eth_white.jpg" alt="">
+            <p>White</p>
+        </div>
+
+        <div class="select-block" data-group="ethnicity" data-label="Asian">
+            <img src="images/eth_asian.jpg" alt="">
+            <p>Asian</p>
+        </div>
+
+        <div class="select-block" data-group="ethnicity" data-label="Arab">
+            <img src="images/eth_arab.jpg" alt="">
+            <p>Arab</p>
+        </div>
+
+        <div class="select-block" data-group="ethnicity" data-label="Black">
+            <img src="images/eth_black.jpg" alt="">
+            <p>Black</p>
+        </div>
+
+        <div class="select-block" data-group="ethnicity" data-label="Latina">
+            <img src="images/eth_latina.jpg" alt="">
+            <p>Latina</p>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="back" onclick="prevPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+
+<!-- ===== PAGE 3 — Body, Breast, Butt ===== -->
+<div class="page" id="page3">
+    <h1>Choose Body Type</h1>
+
+    <div class="grid-2">
+        <div class="select-block" data-group="body" data-label="Slim">
+            <img src="images/body_slim.jpg" alt="">
+            <p>Slim</p>
+        </div>
+        <div class="select-block" data-group="body" data-label="Athletic">
+            <img src="images/body_athletic.jpg" alt="">
+            <p>Athletic</p>
+        </div>
+        <div class="select-block" data-group="body" data-label="Voluptuous">
+            <img src="images/body_voluptuous.jpg" alt="">
+            <p>Voluptuous</p>
+        </div>
+        <div class="select-block" data-group="body" data-label="Curvy">
+            <img src="images/body_curvy.jpg" alt="">
+            <p>Curvy</p>
+        </div>
+    </div>
+
+    <h2>Choose Breast Size</h2>
+    <div class="grid-2">
+        <div class="select-block" data-group="breast" data-label="Small">
+            <img src="images/breast_s.jpg" alt="">
+            <p>Small</p>
+        </div>
+        <div class="select-block" data-group="breast" data-label="Medium">
+            <img src="images/breast_m.jpg" alt="">
+            <p>Medium</p>
+        </div>
+        <div class="select-block" data-group="breast" data-label="Large">
+            <img src="images/breast_l.jpg" alt="">
+            <p>Large</p>
+        </div>
+        <div class="select-block" data-group="breast" data-label="Huge">
+            <img src="images/breast_xl.jpg" alt="">
+            <p>Huge</p>
+        </div>
+    </div>
+
+    <h2>Choose Butt Size</h2>
+    <div class="grid-2">
+        <div class="select-block" data-group="butt" data-label="Skinny">
+            <img src="images/butt_s.jpg" alt="">
+            <p>Skinny</p>
+        </div>
+        <div class="select-block" data-group="butt" data-label="Medium">
+            <img src="images/butt_m.jpg" alt="">
+            <p>Medium</p>
+        </div>
+        <div class="select-block" data-group="butt" data-label="Athletic">
+            <img src="images/butt_athletic.jpg" alt="">
+            <p>Athletic</p>
+        </div>
+        <div class="select-block" data-group="butt" data-label="Large">
+            <img src="images/butt_l.jpg" alt="">
+            <p>Large</p>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="back" onclick="prevPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+
+<!-- ===== PAGE 4 — Hair Style / Color / Eyes ===== -->
+<div class="page" id="page4">
+    <h1>Choose Hair Style</h1>
+
+    <div class="grid-3">
+        <div class="select-block" data-group="hairstyle" data-label="Straight">
+            <img src="images/hair_straight.jpg" alt="">
+            <p>Straight</p>
+        </div>
+        <div class="select-block" data-group="hairstyle" data-label="Short">
+            <img src="images/hair_short.jpg" alt="">
+            <p>Short</p>
+        </div>
+        <div class="select-block" data-group="hairstyle" data-label="Braids">
+            <img src="images/hair_braids.jpg" alt="">
+            <p>Braids</p>
+        </div>
+        <div class="select-block" data-group="hairstyle" data-label="Bun">
+            <img src="images/hair_bun.jpg" alt="">
+            <p>Bun</p>
+        </div>
+        <div class="select-block" data-group="hairstyle" data-label="Curly">
+            <img src="images/hair_curly.jpg" alt="">
+            <p>Curly</p>
+        </div>
+        <div class="select-block" data-group="hairstyle" data-label="Ponytail">
+            <img src="images/hair_ponytail.jpg" alt="">
+            <p>Ponytail</p>
+        </div>
+    </div>
+
+    <h2>Choose Hair Color</h2>
+    <div class="grid-3">
+        <div class="select-block" data-group="haircolor" data-label="Blonde">
+            <img src="images/color_blonde.jpg" alt="">
+            <p>Blonde</p>
+        </div>
+        <div class="select-block" data-group="haircolor" data-label="Brunette">
+            <img src="images/color_brunette.jpg" alt="">
+            <p>Brunette</p>
+        </div>
+        <div class="select-block" data-group="haircolor" data-label="Black">
+            <img src="images/color_black.jpg" alt="">
+            <p>Black</p>
+        </div>
+        <div class="select-block" data-group="haircolor" data-label="Pink">
+            <img src="images/color_pink.jpg" alt="">
+            <p>Pink</p>
+        </div>
+        <div class="select-block" data-group="haircolor" data-label="Redhead">
+            <img src="images/color_red.jpg" alt="">
+            <p>Redhead</p>
+        </div>
+    </div>
+
+    <h2>Choose Eye Color</h2>
+    <div class="grid-3">
+        <div class="select-block" data-group="eyecolor" data-label="Blue">
+            <img src="images/eye_blue.jpg" alt="">
+            <p>Blue</p>
+        </div>
+        <div class="select-block" data-group="eyecolor" data-label="Brown">
+            <img src="images/eye_brown.jpg" alt="">
+            <p>Brown</p>
+        </div>
+        <div class="select-block" data-group="eyecolor" data-label="Green">
+            <img src="images/eye_green.jpg" alt="">
+            <p>Green</p>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="back" onclick="prevPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+
+<!-- ===== PAGE 5 — Voice / Relationship ===== -->
+<div class="page" id="page5">
+    <h1>Choose Voice</h1>
+
+    <div class="grid-2">
+        <div class="select-block" data-group="voice" data-label="Voice 1 Innocent">
+            <img src="images/voice1.jpg" alt="">
+            <p>Voice 1 Innocent</p>
+        </div>
+        <div class="select-block" data-group="voice" data-label="Voice 2 Standard">
+            <img src="images/voice2.jpg" alt="">
+            <p>Voice 2 Standard</p>
+        </div>
+        <div class="select-block" data-group="voice" data-label="Seductress">
+            <img src="images/voice3.jpg" alt="">
+            <p>Seductress</p>
+        </div>
+        <div class="select-block" data-group="voice" data-label="Voice 4 Dominant">
+            <img src="images/voice4.jpg" alt="">
+            <p>Voice 4 Dominant</p>
+        </div>
+    </div>
+
+    <h2>Choose Relationship</h2>
+    <div class="grid-2">
+        <div class="select-block" data-group="relationship" data-label="Step Sister">
+            <img src="images/rel_stepsis.jpg" alt="">
+            <p>Step Sister</p>
+        </div>
+        <div class="select-block" data-group="relationship" data-label="Step Mom">
+            <img src="images/rel_stepmom.jpg" alt="">
+            <p>Step Mom</p>
+        </div>
+        <div class="select-block" data-group="relationship" data-label="Girlfriend">
+            <img src="images/rel_gf.jpg" alt="">
+            <p>Girlfriend</p>
+        </div>
+        <div class="select-block" data-group="relationship" data-label="Sex Friend">
+            <img src="images/rel_friend.jpg" alt="">
+            <p>Sex Friend</p>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="back" onclick="prevPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+
+
+<!-- ===== PAGE 6 — Summary ===== -->
+<div class="page" id="page6">
+    <h1>Summary</h1>
+
+    <div id="summary"></div>
+
+    <div class="buttons">
+        <button class="back" onclick="prevPage()">Previous</button>
+        <button onclick="alert('Your AI is being generated...')">
+            Bring My AI to Life
+        </button>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
 </body>
 </html>
