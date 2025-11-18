@@ -93,6 +93,12 @@ h1, h2 {
     display: block;
 }
 
+/* Smaller cards specifically for page 1 */
+.small-cards .select-block {
+    max-width: 250px;      /* smallest size */
+    margin: 0 auto;
+}
+
 /* Dark gradient text panel */
 .select-block p {
     position: absolute;
