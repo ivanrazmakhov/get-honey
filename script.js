@@ -1,113 +1,131 @@
-/* ================================
-   GLOBAL STATE
-================================= */
+// =====================
+// GLOBAL STATE
+// =====================
+let state = {};
 
-let state = {
-    style: null,
-    ethnicity: null,
-    bodyType: null,
-    breast: null,
-    butt: null,
-    hairStyle: null,
-    hairColor: null,
-    eyeColor: null,
-    voice: null,
-    relationship: null
-};
+// текущая страница
+let currentPage = 1;
 
-/* ================================
-   PAGE NAVIGATION
-================================= */
-
+// =====================
+// SWITCH PAGES
+// =====================
 function goToPage(pageNum) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page' + pageNum).classList.add('active');
+    currentPage = pageNum;
 
-    document.getElementById('statusBar').innerText = `Step ${pageNum} of 6`;
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.querySelector(`#page${pageNum}`).classList.add("active");
 
+    updateStatusBar();
+    lockNextButton();
     if (pageNum === 6) updateSummary();
 }
 
 function nextPage() {
-    let current = getCurrentPage();
-    goToPage(current + 1);
+    goToPage(currentPage + 1);
 }
 
 function prevPage() {
-    let current = getCurrentPage();
-    goToPage(current - 1);
+    goToPage(currentPage - 1);
 }
 
-function getCurrentPage() {
-    let pages = [...document.querySelectorAll('.page')];
-    return pages.findIndex(p => p.classList.contains('active')) + 1;
-}
-
-/* ================================
-   SELECTION SYSTEM
-================================= */
-
-document.querySelectorAll('.select-block').forEach(block => {
-    block.addEventListener('click', () => {
-        const group = block.dataset.group;
-        const value = block.dataset.label;  // <— FIXED
-
-        // remove highlight from others
-        document.querySelectorAll(`.select-block[data-group="${group}"]`)
-            .forEach(b => b.classList.remove('selected'));
-
-        // highlight this one
-        block.classList.add('selected');
-
-        // save selection
-        state[group] = value;
+// =====================
+// STATUS BAR
+// =====================
+function updateStatusBar() {
+    document.querySelectorAll(".status-dot").forEach((dot, index) => {
+        if (index + 1 === currentPage) dot.classList.add("active");
+        else dot.classList.remove("active");
     });
-});
+}
 
-/* ================================
-   SUMMARY
-================================= */
+// =====================
+// HANDLE SELECTION
+// =====================
+function handleSelection(el) {
+    const group = el.dataset.group;
+    const label = el.dataset.label;
 
+    // снять предыдущий выбор
+    document.querySelectorAll(`.select-block[data-group="${group}"]`)
+        .forEach(i => i.classList.remove("selected"));
+
+    // отметить выбранный
+    el.classList.add("selected");
+
+    // сохранить
+    state[group] = label;
+
+    // активируем кнопку next
+    activateNextButton();
+}
+
+// Активировать кнопку Next на текущей странице
+function activateNextButton() {
+    const page = document.querySelector(".page.active");
+    if (!page) return;
+
+    const btn = page.querySelector('button[onclick="nextPage()"]');
+    if (btn) btn.disabled = false;
+}
+
+// Заблокировать кнопку Next при входе на страницу
+function lockNextButton() {
+    const page = document.querySelector(".page.active");
+    if (!page) return;
+
+    const btn = page.querySelector('button[onclick="nextPage()"]');
+    if (btn) btn.disabled = true;
+}
+
+// =====================
+// SUMMARY BUILDER
+// =====================
 function updateSummary() {
-    const container = document.getElementById('summary');
-    container.innerHTML = '';
+    const summary = document.getElementById("summary");
+    summary.innerHTML = "";
 
+    // массив всех групп в порядке показа
     const groups = [
-        ['style', 'Style'],
-        ['ethnicity', 'Ethnicity'],
-        ['bodyType', 'Body Type'],
-        ['breast', 'Breast Size'],
-        ['butt', 'Butt Size'],
-        ['hairStyle', 'Hair Style'],
-        ['hairColor', 'Hair Color'],
-        ['eyeColor', 'Eye Color'],
-        ['voice', 'Voice'],
-        ['relationship', 'Relationship']
+        "style",
+        "ethnicity",
+        "bodyType",
+        "breast",
+        "butt",
+        "hairStyle",
+        "hairColor",
+        "eyeColor",
+        "voice",
+        "relationship"
     ];
 
-    groups.forEach(([key, title]) => {
-        const value = state[key];
+    groups.forEach(group => {
+        if (!state[group]) return;
 
-        if (!value) return;
-
-        // ищем выбранный блок по data-group и data-label
+        // найти выбранный блок
         const block = document.querySelector(
-            `.select-block.selected[data-group="${key}"]`
+            `.select-block.selected[data-group="${group}"]`
         );
 
         if (!block) return;
 
-        // клонируем объект
+        // клонируем и превращаем в итоговую карточку
         const clone = block.cloneNode(true);
-        clone.classList.remove('selected');
-        clone.classList.add('summary-card');
+        clone.classList.remove("selected");
+        clone.classList.add("summary-card");
 
-        container.appendChild(clone);
+        summary.appendChild(clone);
     });
 }
 
-/* ================================
-   INIT
-================================= */
+// =====================
+// INITIALIZE EVENT LISTENERS
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+    // Клики по карточкам
+    document.querySelectorAll(".select-block").forEach(block => {
+        block.addEventListener("click", () => handleSelection(block));
+    });
 
-goToPage(1);
+    // показать первую страницу
+    goToPage(1);
+});
