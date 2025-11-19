@@ -13,11 +13,15 @@ function goToPage(pageNum) {
     currentPage = pageNum;
 
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.querySelector(`#page${pageNum}`).classList.add("active");
+    document.getElementById("page" + pageNum).classList.add("active");
 
     updateStatusBar();
-    lockNextButton();
-    if (pageNum === 6) updateSummary();
+
+    if (pageNum === 6) {
+        updateSummary();
+    }
+
+    lockNextButton(); // если у тебя есть логика блокировки Next
 }
 
 function nextPage() {
@@ -32,9 +36,13 @@ function prevPage() {
 // STATUS BAR
 // =====================
 function updateStatusBar() {
-    document.querySelectorAll(".status-dot").forEach((dot, index) => {
-        if (index + 1 === currentPage) dot.classList.add("active");
-        else dot.classList.remove("active");
+    const dots = document.querySelectorAll(".status-dot");
+    dots.forEach((dot, index) => {
+        if (index + 1 === currentPage) {
+            dot.classList.add("active");
+        } else {
+            dot.classList.remove("active");
+        }
     });
 }
 
