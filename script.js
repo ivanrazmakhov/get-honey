@@ -125,7 +125,39 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".select-block").forEach(block => {
         block.addEventListener("click", () => handleSelection(block));
     });
+// === ЛОГИКА СЛАЙДЕРА ВОЗРАСТА НА 2Й СТРАНИЦЕ ===
+function initAgeSlider() {
+    const range = document.getElementById("ageRange");
+    const bubble = document.getElementById("ageBubble");
+    if (!range || !bubble) return;
 
+    const updateBubble = () => {
+        const min = Number(range.min) || 0;
+        const max = Number(range.max) || 100;
+        const val = Number(range.value);
+
+        const percent = (val - min) / (max - min); // 0–1
+        const trackWidth = range.offsetWidth;
+
+        // позиция по ширине
+        const x = percent * trackWidth;
+        bubble.style.left = x + "px";
+
+        // текст
+        bubble.textContent = val + "+";
+    };
+
+    range.addEventListener("input", updateBubble);
+    window.addEventListener("resize", updateBubble);
+    updateBubble();
+}
+
+// инициализация после загрузки страницы
+document.addEventListener("DOMContentLoaded", () => {
+    // если в твоём текущем script.js уже есть DOMContentLoaded — просто ДОБАВЬ внутрь него вызов initAgeSlider();
+    initAgeSlider();
+});
+    
     // показать первую страницу
     goToPage(1);
 });
