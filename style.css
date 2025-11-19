@@ -64,6 +64,20 @@ h1, h2 {
     gap: 20px;
 }
 
+/* Layout for first page */
+#page1 .grid-2 {
+  display: flex;              
+  justify-content: center;    
+  gap: 24px;                  
+}
+
+/* First page fix weight */
+#page1 .grid-2 .select-block {
+  max-width: 240px;           
+  flex: 0 0 240px;            
+}
+
+
 @media (max-width: 900px) {
     .grid-4 {
         grid-template-columns: repeat(2, 1fr);
