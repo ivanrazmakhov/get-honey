@@ -15,30 +15,35 @@ const ethnicitySummaryImages = {
 // текущая страница
 let currentPage = 1;
 
-// =====================
-// SWITCH PAGES
-// =====================
 function goToPage(pageNum) {
-    currentPage = pageNum;
+    const pages = document.querySelectorAll('.page');
 
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById("page" + pageNum).classList.add("active");
+    // снимаем active со всех
+    pages.forEach(p => p.classList.remove('active'));
+
+    const target = document.getElementById('page' + pageNum);
+
+    if (target) {
+        // если страница найдена — активируем её
+        target.classList.add('active');
+        currentPage = pageNum;
+    } else {
+        // если страницы с таким id нет — оставим хотя бы первую,
+        // чтобы не был пустой экран
+        const first = document.getElementById('page1');
+        if (first) {
+            first.classList.add('active');
+            currentPage = 1;
+        }
+    }
 
     updateStatusBar();
 
-    if (pageNum === 6) {
+    if (currentPage === 6) {
         updateSummary();
     }
 
-    lockNextButton(); // если у тебя есть логика блокировки Next
-}
-
-function nextPage() {
-    goToPage(currentPage + 1);
-}
-
-function prevPage() {
-    goToPage(currentPage - 1);
+    lockNextButton();
 }
 
 // =====================
