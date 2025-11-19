@@ -403,6 +403,23 @@ button:disabled {
     border-radius: 12px;
 }
 
+/* ===== PAGE 5 — уменьшаем изображения во втором блоке (Relationship) ===== */
+
+.relationship-small .select-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+/* уменьшение изображений ровно в 3 раза */
+.relationship-small .select-block img,
+.relationship-small .select-block video {
+    width: 33%;        /* 100% / 3 => уменьшение в три раза */
+    height: auto;
+    display: block;
+}
+
 /* ===== Уменьшаем изображение внутри прямоугольников на 5 странице ===== */
 
 .voice-grid .select-block {
