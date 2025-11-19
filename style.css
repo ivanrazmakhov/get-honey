@@ -277,21 +277,29 @@ button:disabled {
     overflow: hidden;
     border: 2px solid #222;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
+/* фиксированная высота "рамки превью" */
 .summary-card img,
 .summary-card video {
     width: 100%;
-    height: auto;
+    height: 200px;           /* регулируем по вкусу: 160–240 */
+    object-fit: cover;       /* полностью заполняет рамку */
+    object-position: center; /* центрируем */
     display: block;
+    border-bottom: 1px solid #222;
 }
 
+/* подпись */
 .summary-card p {
-    padding: 10px;
-    background: #0008;
+    padding: 12px;
     margin: 0;
+    background: #0d0d0d;
     font-size: 16px;
     font-weight: bold;
+    color: #fff;
 }
 /* ===== Age slider on 2 page ===== */
 
