@@ -25,6 +25,45 @@ h1, h2 {
     z-index: 1000;
 }
 
+/* ===== СТАТУС-БАР С КРУЖКАМИ 1–6 ===== */
+
+#statusBar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 0;
+    background: #111;
+    border-bottom: 1px solid #222;
+}
+
+.status-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #444;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #777;
+    transition: 0.2s;
+}
+
+.status-dot.active {
+    border-color: #ff0077;
+    color: #ff0077;
+    box-shadow: 0 0 10px rgba(255, 0, 119, 0.6);
+}
+
 /* ===== PAGES ===== */
 
 .page {
