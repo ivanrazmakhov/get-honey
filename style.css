@@ -104,14 +104,14 @@ h1, h2 {
 }
 
 /* Layout for first page */
-#page1 .grid-2 {
+#page1 .grid-4 {
   display: flex;              
   justify-content: center;    
   gap: 24px;                  
 }
 
 /* First page fix weight */
-#page1 .grid-2 .select-block {
+#page1 .grid-4 .select-block {
   max-width: 240px;           
   flex: 0 0 240px;            
 }
