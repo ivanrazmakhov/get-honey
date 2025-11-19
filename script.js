@@ -129,6 +129,14 @@ function updateSummary() {
         clone.classList.remove("selected");
         clone.classList.add("summary-card");
 
+        const media = clone.querySelector("img, video");
+if (media) {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("media-wrapper");
+    media.parentNode.insertBefore(wrapper, media);
+    wrapper.appendChild(media);
+}
+
         // 🔁 специальная обработка только для Ethnicity
         if (group === "ethnicity" && ethnicitySummaryImages[value]) {
             const media = clone.querySelector("img, video");
