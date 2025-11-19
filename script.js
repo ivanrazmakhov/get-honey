@@ -46,6 +46,14 @@ function goToPage(pageNum) {
     lockNextButton();
 }
 
+function nextPage() {
+    goToPage(currentPage + 1);
+}
+
+function prevPage() {
+    goToPage(currentPage - 1);
+}
+
 // =====================
 // STATUS BAR
 // =====================
