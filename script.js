@@ -3,6 +3,15 @@
 // =====================
 let state = {};
 
+// Альтернативные картинки для расы в Summary
+const ethnicitySummaryImages = {
+    "White":  "images/eth_white_summary.png",
+    "Asian":  "images/eth_asian_summary.png",
+    "Arab":   "images/eth_arab_summary.png",
+    "Black":  "images/eth_black_summary.png",
+    "Latina": "images/eth_latina_summary.png"
+};
+
 // текущая страница
 let currentPage = 1;
 
@@ -89,10 +98,9 @@ function lockNextButton() {
 // SUMMARY BUILDER
 // =====================
 function updateSummary() {
-    const summary = document.getElementById("summary");
-    summary.innerHTML = "";
+    const container = document.getElementById('summary');
+    container.innerHTML = '';
 
-    // массив всех групп в порядке показа
     const groups = [
         "style",
         "ethnicity",
@@ -107,21 +115,40 @@ function updateSummary() {
     ];
 
     groups.forEach(group => {
-        if (!state[group]) return;
+        const value = state[group];
+        if (!value) return;
 
-        // найти выбранный блок
+        // находим выбранный блок
         const block = document.querySelector(
             `.select-block.selected[data-group="${group}"]`
         );
-
         if (!block) return;
 
-        // клонируем и превращаем в итоговую карточку
+        // клонируем карточку
         const clone = block.cloneNode(true);
         clone.classList.remove("selected");
         clone.classList.add("summary-card");
 
-        summary.appendChild(clone);
+        // 🔁 специальная обработка только для Ethnicity
+        if (group === "ethnicity" && ethnicitySummaryImages[value]) {
+            const media = clone.querySelector("img, video");
+
+            if (media) {
+                // если это <video> — меняем source
+                if (media.tagName.toLowerCase() === "video") {
+                    const source = media.querySelector("source");
+                    if (source) {
+                        source.src = ethnicitySummaryImages[value];
+                        media.load();
+                    }
+                } else {
+                    // иначе это <img>
+                    media.src = ethnicitySummaryImages[value];
+                }
+            }
+        }
+
+        container.appendChild(clone);
     });
 }
 
