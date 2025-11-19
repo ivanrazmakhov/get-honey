@@ -307,18 +307,18 @@ button:disabled {
     border-radius: 12px;
 }
 
-.voice-grid .select-block img,
-.voice-grid .select-block video {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+/* ===== Уменьшаем изображение внутри прямоугольников на 5 странице ===== */
+
+.voice-grid .select-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0; /* немного воздуха вокруг уменьшенной картинки */
 }
 
-/* Уменьшаем изображение внутри голосовых карточек в 2 раза */
 .voice-grid .select-block img,
 .voice-grid .select-block video {
-    transform: scale(0.5);      /* уменьшение в 2 раза */
-    transform-origin: center;   /* уменьшаем от центра */
-    width: 200%;                /* компенсируем сжатие контейнера */
+    width: 50%;      /* картинка в два раза меньше по ширине */
     height: auto;
+    display: block;
 }
