@@ -313,3 +313,12 @@ button:disabled {
     height: auto;
     object-fit: cover;
 }
+
+/* Уменьшаем изображение внутри голосовых карточек в 2 раза */
+.voice-grid .select-block img,
+.voice-grid .select-block video {
+    transform: scale(0.5);      /* уменьшение в 2 раза */
+    transform-origin: center;   /* уменьшаем от центра */
+    width: 200%;                /* компенсируем сжатие контейнера */
+    height: auto;
+}
