@@ -388,23 +388,28 @@ button:disabled {
     opacity: 0.8;
 }
 
-/* ===== PAGE 5 — SMALL VOICE CARDS ===== */
-
+/* маленькие карточки voice в один ряд */
 .voice-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* всё в одну линию */
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     justify-items: center;
 }
 
 .voice-grid .select-block {
-    max-width: 180px;        /* уменьшенная ширина карточки */
+    max-width: 180px;
     flex: 0 0 180px;
     border-radius: 12px;
 }
 
-/* ===== PAGE 5 — уменьшаем изображения во втором блоке (Relationship) ===== */
+.voice-grid .select-block img,
+.voice-grid .select-block video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
+/* уменьшение изображений во втором блоке (relationship) в 3 раза */
 .relationship-small .select-block {
     display: flex;
     align-items: center;
@@ -412,26 +417,9 @@ button:disabled {
     padding: 8px 0;
 }
 
-/* уменьшение изображений ровно в 3 раза */
 .relationship-small .select-block img,
 .relationship-small .select-block video {
-    width: 33%;        /* 100% / 3 => уменьшение в три раза */
-    height: auto;
-    display: block;
-}
-
-/* ===== Уменьшаем изображение внутри прямоугольников на 5 странице ===== */
-
-.voice-grid .select-block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 0; /* немного воздуха вокруг уменьшенной картинки */
-}
-
-.voice-grid .select-block img,
-.voice-grid .select-block video {
-    width: 50%;      /* картинка в два раза меньше по ширине */
+    width: 33%;
     height: auto;
     display: block;
 }
