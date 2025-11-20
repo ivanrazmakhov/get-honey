@@ -323,8 +323,7 @@ button:disabled {
     color: #fff;
 }
 
-/* ===== Age slider on 2 page ===== */
-
+/* ===== СЛАЙДЕР ВОЗРАСТА НА 2 СТРАНИЦЕ ===== */
 .age-slider {
     margin: 30px auto 10px;
     max-width: 420px;
@@ -336,7 +335,7 @@ button:disabled {
     width: 100%;
 }
 
-/* сам input[type=range] */
+/* сам range */
 .age-slider input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -345,7 +344,7 @@ button:disabled {
     margin: 20px 0 8px;
 }
 
-/* полоса слайдера */
+/* трек */
 .age-slider input[type="range"]::-webkit-slider-runnable-track {
     height: 4px;
     background: #333;
@@ -365,7 +364,7 @@ button:disabled {
     height: 18px;
     border-radius: 50%;
     background: #ff0077;
-    margin-top: -7px; /* центрируем относительно трека */
+    margin-top: -7px;
     cursor: pointer;
 }
 .age-slider input[type="range"]::-moz-range-thumb {
@@ -376,7 +375,7 @@ button:disabled {
     cursor: pointer;
 }
 
-/* плавающая плашка над бегунком */
+/* Плавающий пузырёк с возрастом */
 .age-bubble {
     position: absolute;
     top: -28px;
@@ -387,9 +386,11 @@ button:disabled {
     border-radius: 999px;
     font-size: 14px;
     border: 1px solid #444;
+    color: #fff;
+    z-index: 2;
 }
 
-/* подписи 18+ и 55+ */
+/* подписи 18+ / 55+ под слайдером */
 .age-slider-labels {
     display: flex;
     justify-content: space-between;
