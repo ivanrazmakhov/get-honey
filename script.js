@@ -1,49 +1,65 @@
 // =====================
-// GLOBAL STATE
+// ГЛОБАЛЬНОЕ СОСТОЯНИЕ
 // =====================
-let state = {};
-
-// Альтернативные картинки для расы в Summary
-const ethnicitySummaryImages = {
-    "White":  "images/eth_white_summary.png",
-    "Asian":  "images/eth_asian_summary.png",
-    "Arab":   "images/eth_arab_summary.png",
-    "Black":  "images/eth_black_summary.png",
-    "Latina": "images/eth_latina_summary.png"
-};
-
-// текущая страница
 let currentPage = 1;
 
+const state = {
+    style: null,
+    ethnicity: null,
+    bodyType: null,
+    breast: null,
+    butt: null,
+    hairStyle: null,
+    hairColor: null,
+    eyeColor: null,
+    voice: null,
+    relationship: null,
+    age: null
+};
+
+// Альтернативные картинки для Ethnicity в Summary
+const ethnicitySummaryImages = {
+    "White":  "images/eth_white_summary.jpg",
+    "Asian":  "images/eth_asian_summary.jpg",
+    "Arab":   "images/eth_arab_summary.jpg",
+    "Black":  "images/eth_black_summary.jpg",
+    "Latina": "images/eth_latina_summary.jpg"
+};
+
+// =====================
+// НАВИГАЦИЯ ПО СТРАНИЦАМ
+// =====================
 function goToPage(pageNum) {
-    const pages = document.querySelectorAll('.page');
+    const pages = document.querySelectorAll(".page");
 
-    // снимаем active со всех
-    pages.forEach(p => p.classList.remove('active'));
+    // снять active со всех страниц
+    pages.forEach(p => p.classList.remove("active"));
 
-    const target = document.getElementById('page' + pageNum);
+    const target = document.getElementById("page" + pageNum);
 
     if (target) {
-        // если страница найдена — активируем её
-        target.classList.add('active');
+        target.classList.add("active");
         currentPage = pageNum;
     } else {
-        // если страницы с таким id нет — оставим хотя бы первую,
-        // чтобы не был пустой экран
-        const first = document.getElementById('page1');
+        // Фоллбэк, чтобы не было чёрного экрана
+        const first = document.getElementById("page1");
         if (first) {
-            first.classList.add('active');
+            first.classList.add("active");
             currentPage = 1;
         }
     }
 
     updateStatusBar();
+    lockNextButton();
 
+    // На 2 странице — обновляем/инициализируем слайдер
+    if (currentPage === 2) {
+        initAgeSlider();
+    }
+    // На 6 странице — собираем Summary
     if (currentPage === 6) {
         updateSummary();
     }
-
-    lockNextButton();
 }
 
 function nextPage() {
@@ -55,10 +71,10 @@ function prevPage() {
 }
 
 // =====================
-// STATUS BAR
+// СТАТУС-БАР (КРУЖКИ 1–6)
 // =====================
 function updateStatusBar() {
-    const dots = document.querySelectorAll(".status-dot");
+    const dots = document.querySelectorAll("#statusBar .status-dot");
     dots.forEach((dot, index) => {
         if (index + 1 === currentPage) {
             dot.classList.add("active");
@@ -69,110 +85,44 @@ function updateStatusBar() {
 }
 
 // =====================
-// HANDLE SELECTION
+// ВЫБОР КАРТОЧЕК
 // =====================
 function handleSelection(el) {
-    const group = el.dataset.group;
-    const label = el.dataset.label;
+    const group = el.dataset.group;   // например "style", "ethnicity", "bodyType"
+    const label = el.dataset.label;   // текстовое значение (Realistic, Asian и т.д.)
 
-    // снять предыдущий выбор
-    document.querySelectorAll(`.select-block[data-group="${group}"]`)
+    // Снять выделение со всех в этой группе
+    document
+        .querySelectorAll(`.select-block[data-group="${group}"]`)
         .forEach(i => i.classList.remove("selected"));
 
-    // отметить выбранный
+    // Пометить выбранный
     el.classList.add("selected");
 
-    // сохранить
+    // Сохранить в state
     state[group] = label;
 
-    // активируем кнопку next
+    // Активировать кнопку Next на текущей странице
     activateNextButton();
 }
 
-// Активировать кнопку Next на текущей странице
 function activateNextButton() {
     const page = document.querySelector(".page.active");
     if (!page) return;
-
     const btn = page.querySelector('button[onclick="nextPage()"]');
     if (btn) btn.disabled = false;
 }
 
-// Заблокировать кнопку Next при входе на страницу
 function lockNextButton() {
     const page = document.querySelector(".page.active");
     if (!page) return;
-
     const btn = page.querySelector('button[onclick="nextPage()"]');
     if (btn) btn.disabled = true;
 }
 
 // =====================
-// SUMMARY BUILDER
+// СЛАЙДЕР ВОЗРАСТА НА 2 СТРАНИЦЕ
 // =====================
-function updateSummary() {
-    const container = document.getElementById('summary');
-    container.innerHTML = '';
-
-    const groups = [
-        "style",
-        "ethnicity",
-        "bodyType",
-        "breast",
-        "butt",
-        "hairStyle",
-        "hairColor",
-        "eyeColor",
-        "voice",
-        "relationship"
-    ];
-
-    groups.forEach(group => {
-        const value = state[group];
-        if (!value) return;
-
-        // находим выбранный блок
-        const block = document.querySelector(
-            `.select-block.selected[data-group="${group}"]`
-        );
-        if (!block) return;
-
-        // клонируем карточку
-        const clone = block.cloneNode(true);
-        clone.classList.remove("selected");
-        clone.classList.add("summary-card");
-
-        const media = clone.querySelector("img, video");
-if (media) {
-    const wrapper = document.createElement("div");
-    wrapper.classList.add("media-wrapper");
-    media.parentNode.insertBefore(wrapper, media);
-    wrapper.appendChild(media);
-}
-
-        // 🔁 специальная обработка только для Ethnicity
-        if (group === "ethnicity" && ethnicitySummaryImages[value]) {
-            const media = clone.querySelector("img, video");
-
-            if (media) {
-                // если это <video> — меняем source
-                if (media.tagName.toLowerCase() === "video") {
-                    const source = media.querySelector("source");
-                    if (source) {
-                        source.src = ethnicitySummaryImages[value];
-                        media.load();
-                    }
-                } else {
-                    // иначе это <img>
-                    media.src = ethnicitySummaryImages[value];
-                }
-            }
-        }
-
-        container.appendChild(clone);
-    });
-}
-
 function initAgeSlider() {
     const range = document.getElementById("ageRange");
     const bubble = document.getElementById("ageBubble");
@@ -183,87 +133,106 @@ function initAgeSlider() {
         const max = Number(range.max) || 100;
         const val = Number(range.value);
 
-        const percent = (val - min) / (max - min); // 0–1
+        const percent = (val - min) / (max - min);  // 0..1
         const trackWidth = range.clientWidth;
         const x = percent * trackWidth;
 
         bubble.style.left = x + "px";
         bubble.textContent = val + "+";
 
-        // если хочешь сохранить возраст в state:
-        if (typeof state !== "undefined") {
-            state.age = val;
-        }
+        state.age = val;
     };
+
+    // На всякий случай очищаем прежний обработчик
+    if (range._ageHandler) {
+        range.removeEventListener("input", range._ageHandler);
+    }
+    range._ageHandler = updateBubble;
 
     range.addEventListener("input", updateBubble);
     window.addEventListener("resize", updateBubble);
 
-    // первое позиционирование
+    // Первичное позиционирование
     updateBubble();
 }
 
+// =====================
+// SUMMARY НА 6 СТРАНИЦЕ
+// =====================
+function updateSummary() {
+    const container = document.getElementById("summary");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const groups = [
+        ["style",        "Style"],
+        ["ethnicity",    "Ethnicity"],
+        ["bodyType",     "Body Type"],
+        ["breast",       "Breast Size"],
+        ["butt",         "Butt Size"],
+        ["hairStyle",    "Hair Style"],
+        ["hairColor",    "Hair Color"],
+        ["eyeColor",     "Eye Color"],
+        ["voice",        "Voice"],
+        ["relationship", "Relationship"]
+    ];
+
+    groups.forEach(([key]) => {
+        const value = state[key];
+        if (!value) return;
+
+        // Находим исходную выбранную карточку
+        const block = document.querySelector(
+            `.select-block.selected[data-group="${key}"]`
+        );
+        if (!block) return;
+
+        // Клонируем карточку
+        const clone = block.cloneNode(true);
+        clone.classList.remove("selected");
+        clone.classList.add("summary-card");
+
+        // Медиаконтент внутри карточки
+        const media = clone.querySelector("img, video");
+
+        // Специальная замена изображения для Ethnicity
+        if (key === "ethnicity" && media && ethnicitySummaryImages[value]) {
+            if (media.tagName.toLowerCase() === "video") {
+                const source = media.querySelector("source");
+                if (source) {
+                    source.src = ethnicitySummaryImages[value];
+                    media.load();
+                }
+            } else {
+                media.src = ethnicitySummaryImages[value];
+            }
+        }
+
+        // Обёртка для медиа, чтобы fit-content работал красиво
+        if (media) {
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("media-wrapper");
+            media.parentNode.insertBefore(wrapper, media);
+            wrapper.appendChild(media);
+        }
+
+        container.appendChild(clone);
+    });
+}
 
 // =====================
-// INITIALIZE EVENT LISTENERS
+// ИНИЦИАЛИЗАЦИЯ
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
     // Клики по карточкам
     document.querySelectorAll(".select-block").forEach(block => {
         block.addEventListener("click", () => handleSelection(block));
     });
-// === ЛОГИКА СЛАЙДЕРА ВОЗРАСТА НА 2Й СТРАНИЦЕ ===
-function initAgeSlider() {
-    const range = document.getElementById("ageRange");
-    const bubble = document.getElementById("ageBubble");
-    if (!range || !bubble) return;
 
-    const updateBubble = () => {
-        const min = Number(range.min) || 0;
-        const max = Number(range.max) || 100;
-        const val = Number(range.value);
-
-        const percent = (val - min) / (max - min); // 0–1
-        const trackWidth = range.offsetWidth;
-
-        // позиция по ширине
-        const x = percent * trackWidth;
-        bubble.style.left = x + "px";
-
-        // текст
-        bubble.textContent = val + "+";
-    };
-
-    range.addEventListener("input", updateBubble);
-    window.addEventListener("resize", updateBubble);
-    updateBubble();
-}
-
-// инициализация после загрузки страницы
-document.addEventListener("DOMContentLoaded", () => {
-    // твои существующие привязки к .select-block и т.п.
-    document.querySelectorAll(".select-block").forEach(block => {
-        block.addEventListener("click", () => handleSelection(block));
-    });
-
+    // Инициализируем слайдер (на всякий случай сразу)
     initAgeSlider();
+
+    // Показываем первую страницу
     goToPage(1);
 });
-
-    function goToPage(pageNum) {
-    // твоя текущая логика скрытия/показа:
-    currentPage = pageNum;
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    const page = document.getElementById("page" + pageNum);
-    if (page) page.classList.add("active");
-
-    updateStatusBar();
-    lockNextButton();
-
-    if (pageNum === 2) {
-        initAgeSlider();
-    }
-    if (pageNum === 6) {
-        updateSummary();
-    }
-}
