@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Get-honey</title>
+    <title>AI Builder</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -19,7 +19,8 @@
 
 <div class="page active" id="page1">
     <h1>Choose Style</h1>
-    <div class="grid cols-2"> <div class="select-block" data-group="style" data-label="Realistic">
+    <div class="grid cols-2">
+        <div class="select-block" data-group="style" data-label="Realistic">
             <video autoplay loop muted playsinline poster="images/poster_real.jpg">
                 <source src="845430.mp4" type="video/mp4">
             </video>
@@ -39,7 +40,7 @@
 
 <div class="page" id="page2">
     <h1>Choose Ethnicity</h1>
-    <div class="grid cols-5" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+    <div class="grid ethnicity-grid">
         <div class="select-block" data-group="ethnicity" data-label="White">
             <img src="images/white.png" loading="lazy" alt="White">
             <p>White</p>
@@ -80,7 +81,7 @@
 
 <div class="page" id="page3">
     <h1>Choose Body Type</h1>
-    <div class="grid cols-4">
+    <div class="grid cols-4-mobile-2">
         <div class="select-block" data-group="bodyType" data-label="Slim">
             <img src="images/slim.png" loading="lazy" alt="Slim"> <p>Slim</p>
         </div>
@@ -96,7 +97,7 @@
     </div>
 
     <h2>Choose Breast Size</h2>
-    <div class="grid cols-4">
+    <div class="grid cols-4-mobile-2">
         <div class="select-block" data-group="breast" data-label="Small">
             <img src="images/breast_s.png" loading="lazy" alt="S"> <p>Small</p>
         </div>
@@ -112,7 +113,7 @@
     </div>
 
     <h2>Choose Butt Size</h2>
-    <div class="grid cols-4">
+    <div class="grid cols-4-mobile-2">
         <div class="select-block" data-group="butt" data-label="Skinny">
             <img src="images/butt_s.png" loading="lazy" alt="Skinny"> <p>Skinny</p>
         </div>
@@ -135,20 +136,29 @@
 
 <div class="page" id="page4">
     <h1>Choose Hair Style</h1>
-    <div class="grid cols-3">
+    <div class="grid cols-3-mobile-2">
         <div class="select-block" data-group="hairStyle" data-label="Straight">
             <img src="images/hair_straight.png" loading="lazy"> <p>Straight</p>
-        </div>
-        <div class="select-block" data-group="hairStyle" data-label="Curly">
-            <img src="images/hair_curly.png" loading="lazy"> <p>Curly</p>
         </div>
         <div class="select-block" data-group="hairStyle" data-label="Short">
             <img src="images/hair_short.png" loading="lazy"> <p>Short</p>
         </div>
+        <div class="select-block" data-group="hairStyle" data-label="Braids">
+            <img src="images/hair_braids.png" loading="lazy"> <p>Braids</p>
         </div>
+        <div class="select-block" data-group="hairStyle" data-label="Bun">
+            <img src="images/hair_bun.png" loading="lazy"> <p>Bun</p>
+        </div>
+        <div class="select-block" data-group="hairStyle" data-label="Curly">
+            <img src="images/hair_curly.png" loading="lazy"> <p>Curly</p>
+        </div>
+        <div class="select-block" data-group="hairStyle" data-label="Ponytail">
+            <img src="images/hair_ponytail.png" loading="lazy"> <p>Ponytail</p>
+        </div>
+    </div>
 
     <h2>Choose Hair Color</h2>
-    <div class="grid cols-3">
+    <div class="grid cols-3-mobile-2">
         <div class="select-block" data-group="hairColor" data-label="Blonde">
             <img src="images/color_blonde.png" loading="lazy"> <p>Blonde</p>
         </div>
@@ -158,18 +168,24 @@
         <div class="select-block" data-group="hairColor" data-label="Black">
             <img src="images/color_black.png" loading="lazy"> <p>Black</p>
         </div>
+        <div class="select-block" data-group="hairColor" data-label="Pink">
+            <img src="images/color_pink.png" loading="lazy"> <p>Pink</p>
+        </div>
+        <div class="select-block" data-group="hairColor" data-label="Redhead">
+            <img src="images/color_red.png" loading="lazy"> <p>Redhead</p>
+        </div>
     </div>
 
     <h2>Choose Eye Color</h2>
-    <div class="grid cols-3">
+    <div class="grid cols-3-mobile-2">
         <div class="select-block" data-group="eyeColor" data-label="Blue">
             <img src="images/eye_blue.png" loading="lazy"> <p>Blue</p>
         </div>
-        <div class="select-block" data-group="eyeColor" data-label="Green">
-            <img src="images/eye_green.png" loading="lazy"> <p>Green</p>
-        </div>
         <div class="select-block" data-group="eyeColor" data-label="Brown">
             <img src="images/eye_brown.png" loading="lazy"> <p>Brown</p>
+        </div>
+        <div class="select-block" data-group="eyeColor" data-label="Green">
+            <img src="images/eye_green.png" loading="lazy"> <p>Green</p>
         </div>
     </div>
 
@@ -182,29 +198,35 @@
 <div class="page" id="page5">
     <h1>Choose Voice</h1>
     <div class="voice-grid">
-        <div class="select-block" data-group="voice" data-label="Innocent">
+        <div class="select-block" data-group="voice" data-label="Innocent" data-audio="audio/voice1.wav">
             <img src="images/voice.png" loading="lazy"> <p>Innocent</p>
         </div>
-        <div class="select-block" data-group="voice" data-label="Standard">
+        <div class="select-block" data-group="voice" data-label="Standard" data-audio="audio/voice2.wav">
             <img src="images/voice.png" loading="lazy"> <p>Standard</p>
         </div>
-        <div class="select-block" data-group="voice" data-label="Seductress">
+        <div class="select-block" data-group="voice" data-label="Seductress" data-audio="audio/voice3.wav">
             <img src="images/voice.png" loading="lazy"> <p>Seductress</p>
         </div>
-        <div class="select-block" data-group="voice" data-label="Dominant">
+        <div class="select-block" data-group="voice" data-label="Dominant" data-audio="audio/voice4.wav">
             <img src="images/voice.png" loading="lazy"> <p>Dominant</p>
         </div>
     </div>
 
     <h2>Choose Relationship</h2>
-    <div class="grid cols-2 relationship-small">
+    <div class="grid cols-2-mobile-2 relationship-small">
         <div class="select-block" data-group="relationship" data-label="Step Sister">
             <img src="images/rel_stepsis.png" loading="lazy"> <p>Step Sister</p>
+        </div>
+        <div class="select-block" data-group="relationship" data-label="Step Mom">
+            <img src="images/rel_stepmom.png" loading="lazy"> <p>Step Mom</p>
         </div>
         <div class="select-block" data-group="relationship" data-label="Girlfriend">
             <img src="images/rel_gf.png" loading="lazy"> <p>Girlfriend</p>
         </div>
+        <div class="select-block" data-group="relationship" data-label="Sex Friend">
+            <img src="images/rel_friend.png" loading="lazy"> <p>Sex Friend</p>
         </div>
+    </div>
 
     <div class="buttons">
         <button class="back" data-action="prev">Previous</button>
