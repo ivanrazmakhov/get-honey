@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Builder</title>
-
+    <title>Get-honey</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ===== STATUS BAR ===== -->
 <div id="statusBar">
-  <span class="status-dot">1</span>
+  <span class="status-dot active">1</span>
   <span class="status-dot">2</span>
   <span class="status-dot">3</span>
   <span class="status-dot">4</span>
@@ -19,329 +17,209 @@
   <span class="status-dot">6</span>
 </div>
 
-<!-- ===== PAGE 1 — Choose Style ===== -->
-<div class="page active small-cards" id="page1">
+<div class="page active" id="page1">
     <h1>Choose Style</h1>
-
-    <div class="grid-2">
-
-        <!-- Realistic -->
-        <div class="select-block"
-             data-group="style"
-             data-label="Realistic">
-
-            <video autoplay loop muted playsinline>
+    <div class="grid cols-2"> <div class="select-block" data-group="style" data-label="Realistic">
+            <video autoplay loop muted playsinline poster="images/poster_real.jpg">
                 <source src="845430.mp4" type="video/mp4">
             </video>
-
             <p>Realistic</p>
         </div>
-
-        <!-- Anime -->
-        <div class="select-block"
-             data-group="style"
-             data-label="Anime">
-
-            <video autoplay loop muted playsinline>
+        <div class="select-block" data-group="style" data-label="Anime">
+            <video autoplay loop muted playsinline poster="images/poster_anime.jpg">
                 <source src="845430-2.mp4" type="video/mp4">
             </video>
-
             <p>Anime</p>
         </div>
-
     </div>
-
     <div class="buttons">
-        <button id="next-btn-page1" onclick="nextPage()" disabled>Next</button>
+        <button data-action="next" disabled>Next</button>
     </div>
 </div>
 
-
-
-<!-- ===== PAGE 2 — Choose Ethnicity ===== -->
 <div class="page" id="page2">
     <h1>Choose Ethnicity</h1>
-
-    <div class="grid-1">
+    <div class="grid cols-5" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
         <div class="select-block" data-group="ethnicity" data-label="White">
-            <img src="images/white.png" alt="">
+            <img src="images/white.png" loading="lazy" alt="White">
             <p>White</p>
         </div>
-
         <div class="select-block" data-group="ethnicity" data-label="Asian">
-            <img src="images/asian.png" alt="">
+            <img src="images/asian.png" loading="lazy" alt="Asian">
             <p>Asian</p>
         </div>
-
         <div class="select-block" data-group="ethnicity" data-label="Arab">
-            <img src="images/arab.png" alt="">
+            <img src="images/arab.png" loading="lazy" alt="Arab">
             <p>Arab</p>
         </div>
-
         <div class="select-block" data-group="ethnicity" data-label="Black">
-            <img src="images/black.png" alt="">
+            <img src="images/black.png" loading="lazy" alt="Black">
             <p>Black</p>
         </div>
-
         <div class="select-block" data-group="ethnicity" data-label="Latina">
-            <img src="images/latina.png" alt="">
+            <img src="images/latina.png" loading="lazy" alt="Latina">
             <p>Latina</p>
         </div>
     </div>
 
     <div class="age-slider">
-  <div class="age-slider-track">
-    <input
-      type="range"
-      id="ageRange"
-      min="18"
-      max="55"
-      value="25"
-    />
-    <div id="ageBubble" class="age-bubble">25+</div>
-  </div>
-
-  <div class="age-slider-labels">
-    <span>18+</span>
-    <span>55+</span>
-  </div>
-</div>
+        <div class="age-slider-track">
+            <div id="ageBubble" class="age-bubble">25+</div>
+            <input type="range" id="ageRange" min="18" max="55" value="25" />
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:14px; color:#888; margin-top:5px;">
+            <span>18+</span><span>55+</span>
+        </div>
+    </div>
     
     <div class="buttons">
-        <button class="back" onclick="prevPage()">Previous</button>
-        <button id="next-btn-page2" onclick="nextPage()" disabled>Next</button>
+        <button class="back" data-action="prev">Previous</button>
+        <button data-action="next" disabled>Next</button>
     </div>
 </div>
 
-<!-- ===== PAGE 3 — Body, Breast, Butt ===== -->
 <div class="page" id="page3">
     <h1>Choose Body Type</h1>
-
-    <div class="grid-4">
+    <div class="grid cols-4">
         <div class="select-block" data-group="bodyType" data-label="Slim">
-            <img src="images/slim.png" alt="">
-            <p>Slim</p>
+            <img src="images/slim.png" loading="lazy" alt="Slim"> <p>Slim</p>
         </div>
         <div class="select-block" data-group="bodyType" data-label="Athletic">
-            <img src="images/athletic.png" alt="">
-            <p>Athletic</p>
+            <img src="images/athletic.png" loading="lazy" alt="Athletic"> <p>Athletic</p>
         </div>
         <div class="select-block" data-group="bodyType" data-label="Voluptuous">
-            <img src="images/voluptuous.png" alt="">
-            <p>Voluptuous</p>
+            <img src="images/voluptuous.png" loading="lazy" alt="Voluptuous"> <p>Voluptuous</p>
         </div>
         <div class="select-block" data-group="bodyType" data-label="Curvy">
-            <img src="images/curvy.png" alt="">
-            <p>Curvy</p>
+            <img src="images/curvy.png" loading="lazy" alt="Curvy"> <p>Curvy</p>
         </div>
     </div>
 
     <h2>Choose Breast Size</h2>
-    <div class="grid-4">
+    <div class="grid cols-4">
         <div class="select-block" data-group="breast" data-label="Small">
-            <img src="images/breast_s.png" alt="">
-            <p>Small</p>
+            <img src="images/breast_s.png" loading="lazy" alt="S"> <p>Small</p>
         </div>
         <div class="select-block" data-group="breast" data-label="Medium">
-            <img src="images/breast_m.png" alt="">
-            <p>Medium</p>
+            <img src="images/breast_m.png" loading="lazy" alt="M"> <p>Medium</p>
         </div>
         <div class="select-block" data-group="breast" data-label="Large">
-            <img src="images/breast_l.png" alt="">
-            <p>Large</p>
+            <img src="images/breast_l.png" loading="lazy" alt="L"> <p>Large</p>
         </div>
         <div class="select-block" data-group="breast" data-label="Huge">
-            <img src="images/breast_xl.png" alt="">
-            <p>Huge</p>
+            <img src="images/breast_xl.png" loading="lazy" alt="XL"> <p>Huge</p>
         </div>
     </div>
 
     <h2>Choose Butt Size</h2>
-    <div class="grid-4">
+    <div class="grid cols-4">
         <div class="select-block" data-group="butt" data-label="Skinny">
-            <img src="images/butt_s.png" alt="">
-            <p>Skinny</p>
+            <img src="images/butt_s.png" loading="lazy" alt="Skinny"> <p>Skinny</p>
         </div>
         <div class="select-block" data-group="butt" data-label="Medium">
-            <img src="images/butt_m.png" alt="">
-            <p>Medium</p>
+            <img src="images/butt_m.png" loading="lazy" alt="Medium"> <p>Medium</p>
         </div>
         <div class="select-block" data-group="butt" data-label="Athletic">
-            <img src="images/butt_athletic.png" alt="">
-            <p>Athletic</p>
+            <img src="images/butt_athletic.png" loading="lazy" alt="Athletic"> <p>Athletic</p>
         </div>
         <div class="select-block" data-group="butt" data-label="Large">
-            <img src="images/butt_l.png" alt="">
-            <p>Large</p>
+            <img src="images/butt_l.png" loading="lazy" alt="Large"> <p>Large</p>
         </div>
     </div>
 
     <div class="buttons">
-        <button class="back" onclick="prevPage()">Previous</button>
-        <button id="next-btn-page3" onclick="nextPage()" disabled>Next</button>
+        <button class="back" data-action="prev">Previous</button>
+        <button data-action="next" disabled>Next</button>
     </div>
 </div>
-<!-- ===== PAGE 4 — Hair Style / Color / Eyes ===== -->
+
 <div class="page" id="page4">
     <h1>Choose Hair Style</h1>
-
-    <div class="grid-3">
-        <div class="select-block" data-group="hairstyle" data-label="Straight">
-            <img src="images/hair_straight.png" alt="">
-            <p>Straight</p>
+    <div class="grid cols-3">
+        <div class="select-block" data-group="hairStyle" data-label="Straight">
+            <img src="images/hair_straight.png" loading="lazy"> <p>Straight</p>
         </div>
-        <div class="select-block" data-group="hairstyle" data-label="Short">
-            <img src="images/hair_short.png" alt="">
-            <p>Short</p>
+        <div class="select-block" data-group="hairStyle" data-label="Curly">
+            <img src="images/hair_curly.png" loading="lazy"> <p>Curly</p>
         </div>
-        <div class="select-block" data-group="hairstyle" data-label="Braids">
-            <img src="images/hair_braids.png" alt="">
-            <p>Braids</p>
+        <div class="select-block" data-group="hairStyle" data-label="Short">
+            <img src="images/hair_short.png" loading="lazy"> <p>Short</p>
         </div>
-        <div class="select-block" data-group="hairstyle" data-label="Bun">
-            <img src="images/hair_bun.png" alt="">
-            <p>Bun</p>
         </div>
-        <div class="select-block" data-group="hairstyle" data-label="Curly">
-            <img src="images/hair_curly.png" alt="">
-            <p>Curly</p>
-        </div>
-        <div class="select-block" data-group="hairstyle" data-label="Ponytail">
-            <img src="images/hair_ponytail.png" alt="">
-            <p>Ponytail</p>
-        </div>
-    </div>
 
     <h2>Choose Hair Color</h2>
-    <div class="grid-3">
-        <div class="select-block" data-group="haircolor" data-label="Blonde">
-            <img src="images/color_blonde.png" alt="">
-            <p>Blonde</p>
+    <div class="grid cols-3">
+        <div class="select-block" data-group="hairColor" data-label="Blonde">
+            <img src="images/color_blonde.png" loading="lazy"> <p>Blonde</p>
         </div>
-        <div class="select-block" data-group="haircolor" data-label="Brunette">
-            <img src="images/color_brunette.png" alt="">
-            <p>Brunette</p>
+        <div class="select-block" data-group="hairColor" data-label="Brunette">
+            <img src="images/color_brunette.png" loading="lazy"> <p>Brunette</p>
         </div>
-        <div class="select-block" data-group="haircolor" data-label="Black">
-            <img src="images/color_black.png" alt="">
-            <p>Black</p>
-        </div>
-        <div class="select-block" data-group="haircolor" data-label="Pink">
-            <img src="images/color_pink.png" alt="">
-            <p>Pink</p>
-        </div>
-        <div class="select-block" data-group="haircolor" data-label="Redhead">
-            <img src="images/color_red.png" alt="">
-            <p>Redhead</p>
+        <div class="select-block" data-group="hairColor" data-label="Black">
+            <img src="images/color_black.png" loading="lazy"> <p>Black</p>
         </div>
     </div>
 
     <h2>Choose Eye Color</h2>
-    <div class="grid-3">
-        <div class="select-block" data-group="eyecolor" data-label="Blue">
-            <img src="images/eye_blue.png" alt="">
-            <p>Blue</p>
+    <div class="grid cols-3">
+        <div class="select-block" data-group="eyeColor" data-label="Blue">
+            <img src="images/eye_blue.png" loading="lazy"> <p>Blue</p>
         </div>
-        <div class="select-block" data-group="eyecolor" data-label="Brown">
-            <img src="images/eye_brown.png" alt="">
-            <p>Brown</p>
+        <div class="select-block" data-group="eyeColor" data-label="Green">
+            <img src="images/eye_green.png" loading="lazy"> <p>Green</p>
         </div>
-        <div class="select-block" data-group="eyecolor" data-label="Green">
-            <img src="images/eye_green.png" alt="">
-            <p>Green</p>
+        <div class="select-block" data-group="eyeColor" data-label="Brown">
+            <img src="images/eye_brown.png" loading="lazy"> <p>Brown</p>
         </div>
     </div>
 
     <div class="buttons">
-        <button class="back" onclick="prevPage()">Previous</button>
-        <button id="next-btn-page4" onclick="nextPage()" disabled>Next</button>
+        <button class="back" data-action="prev">Previous</button>
+        <button data-action="next" disabled>Next</button>
     </div>
 </div>
 
-<!-- ===== PAGE 5 — Voice / Relationship ===== -->
 <div class="page" id="page5">
     <h1>Choose Voice</h1>
-
-    <!-- МАЛЕНЬКИЕ КАРТОЧКИ В ОДНУ СТРОКУ (VOICE) -->
     <div class="voice-grid">
-    <div class="select-block"
-         data-group="voice"
-         data-label="Voice 1 Innocent"
-         data-audio="audio/voice1.wav">
-        <img src="images/voice.png" alt="Voice 1 Innocent">
-        <p>Voice 1 Innocent</p>
+        <div class="select-block" data-group="voice" data-label="Innocent">
+            <img src="images/voice.png" loading="lazy"> <p>Innocent</p>
+        </div>
+        <div class="select-block" data-group="voice" data-label="Standard">
+            <img src="images/voice.png" loading="lazy"> <p>Standard</p>
+        </div>
+        <div class="select-block" data-group="voice" data-label="Seductress">
+            <img src="images/voice.png" loading="lazy"> <p>Seductress</p>
+        </div>
+        <div class="select-block" data-group="voice" data-label="Dominant">
+            <img src="images/voice.png" loading="lazy"> <p>Dominant</p>
+        </div>
     </div>
-
-    <div class="select-block"
-         data-group="voice"
-         data-label="Voice 2 Standard"
-         data-audio="audio/voice2.wav">
-        <img src="images/voice.png" alt="Voice 2 Standard">
-        <p>Voice 2 Standard</p>
-    </div>
-
-    <div class="select-block"
-         data-group="voice"
-         data-label="Seductress"
-         data-audio="audio/voice3.wav">
-        <img src="images/voice.png" alt="Voice 3 Seductress">
-        <p>Voice 3 Seductress</p>
-    </div>
-
-    <div class="select-block"
-         data-group="voice"
-         data-label="Voice 4 Dominant"
-         data-audio="audio/voice4.wav">
-        <img src="images/voice.png" alt="Voice 4 Dominant">
-        <p>Voice 4 Dominant</p>
-    </div>
-</div>
 
     <h2>Choose Relationship</h2>
-
-    <!-- БЛОК RELATIONSHIP 2×2, КАРТИНКИ УМЕНЬШЕНЫ В 3 РАЗА -->
-    <div class="grid-2 relationship-small">
+    <div class="grid cols-2 relationship-small">
         <div class="select-block" data-group="relationship" data-label="Step Sister">
-            <img src="images/rel_stepsis.png" alt="Step Sister">
-            <p>Step Sister</p>
+            <img src="images/rel_stepsis.png" loading="lazy"> <p>Step Sister</p>
         </div>
-
-        <div class="select-block" data-group="relationship" data-label="Step Mom">
-            <img src="images/rel_stepmom.png" alt="Step Mom">
-            <p>Step Mom</p>
-        </div>
-
         <div class="select-block" data-group="relationship" data-label="Girlfriend">
-            <img src="images/rel_gf.png" alt="Girlfriend">
-            <p>Girlfriend</p>
+            <img src="images/rel_gf.png" loading="lazy"> <p>Girlfriend</p>
         </div>
-
-        <div class="select-block" data-group="relationship" data-label="Sex Friend">
-            <img src="images/rel_friend.png" alt="Sex Friend">
-            <p>Sex Friend</p>
         </div>
-    </div>
 
     <div class="buttons">
-        <button class="back" onclick="prevPage()">Previous</button>
-        <button onclick="nextPage()">Next</button>
+        <button class="back" data-action="prev">Previous</button>
+        <button data-action="next" disabled>Next</button>
     </div>
 </div>
 
-<!-- ===== PAGE 6 — Summary ===== -->
 <div class="page" id="page6">
     <h1>Summary</h1>
-
     <div id="summary" class="summary-grid"></div>
-
     <div class="buttons">
-        <button class="back" onclick="prevPage()">Previous</button>
-        <button onclick="alert('Your AI is being generated...')">
-            Bring My AI to Life
-        </button>
+        <button class="back" data-action="prev">Previous</button>
+        <button data-action="generate">Bring My AI to Life</button>
     </div>
 </div>
-
 
 <script src="script.js"></script>
 </body>
