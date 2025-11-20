@@ -241,10 +241,29 @@ function initAgeSlider() {
 
 // инициализация после загрузки страницы
 document.addEventListener("DOMContentLoaded", () => {
-    // если в твоём текущем script.js уже есть DOMContentLoaded — просто ДОБАВЬ внутрь него вызов initAgeSlider();
+    // твои существующие привязки к .select-block и т.п.
+    document.querySelectorAll(".select-block").forEach(block => {
+        block.addEventListener("click", () => handleSelection(block));
+    });
+
     initAgeSlider();
-});
-    
-    // показать первую страницу
     goToPage(1);
 });
+
+    function goToPage(pageNum) {
+    // твоя текущая логика скрытия/показа:
+    currentPage = pageNum;
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    const page = document.getElementById("page" + pageNum);
+    if (page) page.classList.add("active");
+
+    updateStatusBar();
+    lockNextButton();
+
+    if (pageNum === 2) {
+        initAgeSlider();
+    }
+    if (pageNum === 6) {
+        updateSummary();
+    }
+}
