@@ -149,6 +149,15 @@ h1, h2 {
     }
 }
 
+/* ===== МАЛЬЕНЬКИЙ ТЕКСТ НА 5-Й СТРАНИЦЕ ДО iPhone ===== */
+@media (max-width: 480px) {
+    #page5 .select-block p {
+        font-size: 12px;     /* было 16px, теперь меньше */
+        line-height: 1.2;
+        padding: 6px;        /* чтобы не налезало на картинку */
+    }
+}
+
 /* ===== SELECT BLOCKS ===== */
 
 .select-block {
