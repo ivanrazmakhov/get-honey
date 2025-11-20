@@ -173,6 +173,37 @@ if (media) {
     });
 }
 
+function initAgeSlider() {
+    const range = document.getElementById("ageRange");
+    const bubble = document.getElementById("ageBubble");
+    if (!range || !bubble) return;
+
+    const updateBubble = () => {
+        const min = Number(range.min) || 0;
+        const max = Number(range.max) || 100;
+        const val = Number(range.value);
+
+        const percent = (val - min) / (max - min); // 0–1
+        const trackWidth = range.clientWidth;
+        const x = percent * trackWidth;
+
+        bubble.style.left = x + "px";
+        bubble.textContent = val + "+";
+
+        // если хочешь сохранить возраст в state:
+        if (typeof state !== "undefined") {
+            state.age = val;
+        }
+    };
+
+    range.addEventListener("input", updateBubble);
+    window.addEventListener("resize", updateBubble);
+
+    // первое позиционирование
+    updateBubble();
+}
+
+
 // =====================
 // INITIALIZE EVENT LISTENERS
 // =====================
