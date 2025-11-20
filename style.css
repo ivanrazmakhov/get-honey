@@ -53,7 +53,7 @@ h1, h2 {
     box-shadow: 0 0 10px rgba(255, 0, 119, 0.6);
 }
 
-/* ===== PAGES & GRID ===== */
+/* ===== PAGES & ANIMATIONS ===== */
 .page {
     display: none;
     padding: 20px;
@@ -71,56 +71,61 @@ h1, h2 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* === Универсальная сетка === */
+/* ===== ГЛОБАЛЬНАЯ СЕТКА ===== */
 .grid {
     display: grid;
     gap: 15px;
     margin-bottom: 30px;
 }
 
-/* Страница 1 */
+/* Page 1: 2 большие колонки */
 .cols-2 { grid-template-columns: repeat(2, 1fr); }
 
-/* Для Страницы 3 и 4: На десктопе 4 или 3 колонки, на мобильном — СТРОГО 2 */
-.cols-4-mobile-2 { grid-template-columns: repeat(4, 1fr); }
-.cols-3-mobile-2 { grid-template-columns: repeat(3, 1fr); }
-.cols-2-mobile-2 { grid-template-columns: repeat(2, 1fr); }
-
-/* Страница 2 (Ethnicity): Адаптивно */
-.ethnicity-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+/* Page 3 & 5: 4 на ПК, 2 на мобильном (чтобы видеть больше) */
+.cols-4-mobile-2 { 
+    grid-template-columns: repeat(4, 1fr); 
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    /* На планшетах и мобильных ПРИНУДИТЕЛЬНО 2 колонки для контента,
-       чтобы видеть больше вариантов сразу */
-    .cols-4-mobile-2, 
-    .cols-3-mobile-2 { 
-        grid-template-columns: repeat(2, 1fr); 
-    }
+/* Page 4: 3 колонки ВЕЗДЕ (и на ПК, и на iPhone для плотной сетки) */
+.cols-mobile-3 { 
+    grid-template-columns: repeat(3, 1fr); 
+}
 
-    /* Для страницы 2 (Ethnicity) на мобильном делаем колонку (сверху вниз),
-       как вы просили, но широкую */
+/* Page 2 (Ethnicity) */
+.ethnicity-grid {
+    /* На десктопе делаем карточки ОЧЕНЬ большими (minmax 280px) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+}
+
+/* ===== АДАПТИВНОСТЬ (iPhone / Mobile) ===== */
+@media (max-width: 768px) {
+    
+    /* Page 2: На мобильном - одна колонка (сверху вниз), как просили */
     .ethnicity-grid {
-        grid-template-columns: 1fr; /* Одна колонка сверху вниз */
-        max-width: 400px; /* Ограничение ширины чтобы не было гигантским */
+        grid-template-columns: 1fr; 
+        max-width: 400px;
         margin-left: auto;
         margin-right: auto;
     }
-    /* Если хотите на странице 2 тоже 2 колонки, замените 1fr на repeat(2, 1fr) */
-}
 
-@media (max-width: 500px) {
-    /* Даже на узких экранах оставляем 2 колонки для hair/body,
-       чтобы пользователю было удобнее */
-    .cols-4-mobile-2, 
-    .cols-3-mobile-2 { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 10px; /* Чуть меньше отступ */
+    /* Page 3 & 5: Принудительно 2 колонки */
+    .cols-4-mobile-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Page 4: Принудительно 3 колонки (мелкая сетка) */
+    .cols-mobile-3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px; /* Чуть меньше отступ, чтобы влезло */
+    }
+    
+    /* Уменьшаем шрифт на карточках 4-й страницы, так как они узкие */
+    .cols-mobile-3 .select-block p {
+        font-size: 12px;
+        padding: 6px 0;
     }
 }
-
 
 /* ===== SELECT BLOCKS ===== */
 .select-block {
@@ -159,52 +164,34 @@ h1, h2 {
     transform: scale(1.02);
 }
 
-/* Page 1 Specific */
-#page1 .grid {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-}
-#page1 .select-block {
-    max-width: 250px;
-    aspect-ratio: 9 / 16;
-}
-#page1 .select-block video {
-    height: 100%;
-}
+/* Page 1 Specific Fixes */
+#page1 .grid { display: flex; justify-content: center; gap: 24px; }
+#page1 .select-block { max-width: 250px; aspect-ratio: 9 / 16; }
+#page1 .select-block video { height: 100%; }
 
-/* Voice Grid (Page 5) */
+/* Page 5 Voice Grid */
 .voice-grid {
     display: grid;
-    /* На мобильном 2 в ряд, на десктопе 4 */
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Десктоп */
     gap: 16px;
     justify-items: center;
 }
-@media (max-width: 600px) {
-    .voice-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 .voice-grid .select-block { width: 100%; }
 
-/* Relationship Grid Small Images (Page 5) */
+@media (max-width: 600px) {
+    /* На мобильном Voice тоже в 2 колонки */
+    .voice-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Relationship Small Images */
 .relationship-small .select-block {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
 }
-.relationship-small .select-block img {
-    width: 60px; /* Маленькие иконки */
-    margin-bottom: 5px;
-}
-.relationship-small .select-block p {
-    position: static;
-    background: none;
-    padding: 0;
-    font-size: 13px;
-}
+.relationship-small .select-block img { width: 60px; margin-bottom: 5px; }
+.relationship-small .select-block p { position: static; background: none; padding: 0; font-size: 13px; }
 
 /* ===== BUTTONS ===== */
 .buttons {
@@ -225,15 +212,15 @@ button {
     font-weight: 600;
     transition: background 0.2s;
 }
-
 button:hover:not(:disabled) { background: var(--primary-hover); }
 button:disabled { opacity: 0.4; cursor: not-allowed; background: #333; color: #888; }
 button.back { background: #333; }
 button.back:hover { background: #444; }
 
-/* ===== SUMMARY ===== */
+/* ===== SUMMARY (Page 6) ===== */
 .summary-grid {
     display: grid;
+    /* Десктоп: авто-заполнение */
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 16px;
     padding: 10px;
@@ -257,6 +244,19 @@ button.back:hover { background: #444; }
     object-fit: contain;
 }
 
+/* Мобильный Summary: Принудительно 2 колонки */
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .summary-card p {
+        font-size: 12px; /* Чуть меньше шрифт, чтобы влезал текст */
+    }
+    .summary-card img, .summary-card video {
+        max-height: 120px; /* Чуть меньше картинки по высоте */
+    }
+}
+
 /* ===== SLIDER ===== */
 .age-slider { margin: 40px auto 20px; max-width: 400px; text-align: center; }
 .age-slider-track { position: relative; padding-top: 30px; }
@@ -270,8 +270,4 @@ button.back:hover { background: #444; }
     border-radius: 12px;
     font-size: 14px;
 }
-input[type="range"] {
-    width: 100%;
-    accent-color: var(--primary-color);
-    cursor: pointer;
-}
+input[type="range"] { width: 100%; accent-color: var(--primary-color); cursor: pointer; }
