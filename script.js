@@ -3,11 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // КОНФИГУРАЦИЯ И СОСТОЯНИЕ
     // =====================
     let currentPage = 1;
+    let currentAudio = null; // Переменная для хранения текущего аудио
     
     const state = {
         style: null, ethnicity: null, bodyType: null, breast: null,
         butt: null, hairStyle: null, hairColor: null, eyeColor: null,
-        voice: null, relationship: null, age: 25 // Значение по умолчанию
+        voice: null, relationship: null, age: 25
     };
 
     const ethnicitySummaryImages = {
@@ -20,9 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const totalPages = 6;
 
-    // =====================
-    // ИНИЦИАЛИЗАЦИЯ
-    // =====================
     init();
 
     function init() {
@@ -32,10 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =====================
-    // ОБРАБОТЧИКИ СОБЫТИЙ (Event Delegation)
+    // ОБРАБОТЧИКИ СОБЫТИЙ
     // =====================
     function setupEventListeners() {
-        // Клик по карточкам (делегирование)
+        // Делегирование клика для карточек
         document.addEventListener('click', (e) => {
             const card = e.target.closest('.select-block');
             if (card) {
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Кнопки навигации
         document.querySelectorAll('[data-action="next"]').forEach(btn => {
             btn.addEventListener('click', nextPage);
         });
@@ -58,28 +55,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =====================
-    // ЛОГИКА ВЫБОРА
+    // ЛОГИКА ВЫБОРА И АУДИО
     // =====================
     function handleSelection(el) {
         const group = el.dataset.group;
         const label = el.dataset.label;
 
-        // Визуальное выделение
+        // 1. Визуальное выделение
         document.querySelectorAll(`.select-block[data-group="${group}"]`)
             .forEach(i => i.classList.remove("selected"));
         el.classList.add("selected");
 
-        // Обновление состояния
+        // 2. Обновление состояния
         state[group] = label;
 
-        // Проверка валидации текущей страницы
+        // 3. Проигрывание аудио (если есть data-audio)
+        if (el.dataset.audio) {
+            playAudio(el.dataset.audio);
+        }
+
+        // 4. Проверка кнопки Next
         validateCurrentPage();
+    }
+
+    function playAudio(src) {
+        // Если что-то уже играет — останавливаем
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+        // Создаем и запускаем новое
+        currentAudio = new Audio(src);
+        currentAudio.play().catch(e => console.log("Audio play error:", e));
     }
 
     // =====================
     // НАВИГАЦИЯ
     // =====================
     function nextPage() {
+        // Останавливаем звук при уходе со страницы
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio = null;
+        }
+
         if (currentPage < totalPages) {
             currentPage++;
             updatePageVisibility();
@@ -94,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updatePageVisibility() {
-        // Скрываем все, показываем текущую
         document.querySelectorAll(".page").forEach((p, idx) => {
             if (idx + 1 === currentPage) {
                 p.classList.add("active");
@@ -104,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         updateStatusBar();
-        validateCurrentPage(); // Проверяем кнопку Next при смене страницы
+        validateCurrentPage();
 
         if (currentPage === 6) {
             renderSummary();
@@ -119,31 +137,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =====================
-    // ВАЛИДАЦИЯ (LOCK/UNLOCK NEXT)
+    // ВАЛИДАЦИЯ
     // =====================
     function validateCurrentPage() {
         const activePage = document.querySelector(`.page#page${currentPage}`);
         const nextBtn = activePage.querySelector('[data-action="next"]');
         
-        if (!nextBtn) return; // На последней странице нет кнопки Next
+        if (!nextBtn) return;
 
         let isValid = false;
-
-        // Логика валидации для каждой страницы
         switch (currentPage) {
             case 1: isValid = !!state.style; break;
-            case 2: isValid = !!state.ethnicity; break; // Возраст есть по дефолту
+            case 2: isValid = !!state.ethnicity; break;
             case 3: isValid = !!state.bodyType && !!state.breast && !!state.butt; break;
             case 4: isValid = !!state.hairStyle && !!state.hairColor && !!state.eyeColor; break;
             case 5: isValid = !!state.voice && !!state.relationship; break;
             default: isValid = true;
         }
-
         nextBtn.disabled = !isValid;
     }
 
     // =====================
-    // СЛАЙДЕР ВОЗРАСТА
+    // СЛАЙДЕР
     // =====================
     function initAgeSlider() {
         const range = document.getElementById("ageRange");
@@ -155,9 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const min = range.min || 18;
             const max = range.max || 55;
             const percent = (val - min) / (max - min);
-            
-            // Двигаем пузырек
-            const offset = percent * (range.offsetWidth - 20); // -20 это ширина thumb примерно
+            const offset = percent * (range.offsetWidth - 20); 
             bubble.style.left = `calc(${percent * 100}% + (${10 - percent * 20}px))`; 
             bubble.textContent = val + "+";
             state.age = val;
@@ -165,11 +178,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         range.addEventListener("input", update);
         window.addEventListener("resize", update);
-        update(); // Первый запуск
+        update();
     }
 
     // =====================
-    // SUMMARY GENERATION
+    // SUMMARY
     // =====================
     function renderSummary() {
         const container = document.getElementById("summary");
@@ -179,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const fields = [
             { key: "style", label: "Style" },
             { key: "ethnicity", label: "Ethnicity" },
-            { key: "age", label: "Age", isText: true }, // Пример текстового поля
+            { key: "age", label: "Age" },
             { key: "bodyType", label: "Body" },
             { key: "breast", label: "Breast" },
             { key: "butt", label: "Butt" },
@@ -191,21 +204,18 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
 
         fields.forEach(field => {
-            if (field.key === 'age') return; // Возраст обычно не имеет картинки, но можно добавить
+            if (field.key === 'age') return; 
 
             const val = state[field.key];
             if (!val) return;
 
-            // Находим оригинальный элемент, чтобы взять картинку
             const originalBlock = document.querySelector(`.select-block[data-group="${field.key}"][data-label="${val}"]`);
             if (!originalBlock) return;
 
             const card = document.createElement('div');
             card.className = 'summary-card';
 
-            // Обработка медиа
             let mediaContent = '';
-            // Спец. условие для Ethnicity Summary Image
             if (field.key === "ethnicity" && ethnicitySummaryImages[val]) {
                 mediaContent = `<img src="${ethnicitySummaryImages[val]}" alt="${val}">`;
             } else {
@@ -221,7 +231,5 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             container.appendChild(card);
         });
-        
-        // Добавим карточку возраста отдельно, если нужно, или просто текстом
     }
 });
