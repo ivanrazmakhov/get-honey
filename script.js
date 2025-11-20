@@ -3,6 +3,8 @@
 // =====================
 let currentPage = 1;
 
+let currentAudio = null;
+
 const state = {
     style: null,
     ethnicity: null,
@@ -88,8 +90,8 @@ function updateStatusBar() {
 // ВЫБОР КАРТОЧЕК
 // =====================
 function handleSelection(el) {
-    const group = el.dataset.group;   // например "style", "ethnicity", "bodyType"
-    const label = el.dataset.label;   // текстовое значение (Realistic, Asian и т.д.)
+    const group = el.dataset.group;
+    const label = el.dataset.label;
 
     // Снять выделение со всех в этой группе
     document
@@ -102,7 +104,23 @@ function handleSelection(el) {
     // Сохранить в state
     state[group] = label;
 
-    // Активировать кнопку Next на текущей странице
+    // === ПРОИГРЫВАНИЕ АУДИО ДЛЯ VOICE ===
+    const audioSrc = el.dataset.audio;
+    if (audioSrc) {
+        // Остановить предыдущий звук
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+
+        // Создать и проиграть новый
+        currentAudio = new Audio(audioSrc);
+        currentAudio.play().catch(err => {
+            console.warn("Не удалось воспроизвести аудио:", err);
+        });
+    }
+
+    // Активировать кнопку Next
     activateNextButton();
 }
 
