@@ -53,7 +53,7 @@ h1, h2 {
     box-shadow: 0 0 10px rgba(255, 0, 119, 0.6);
 }
 
-/* ===== PAGES & ANIMATIONS ===== */
+/* ===== PAGES ===== */
 .page {
     display: none;
     padding: 20px;
@@ -78,53 +78,37 @@ h1, h2 {
     margin-bottom: 30px;
 }
 
-/* Page 1: 2 большие колонки */
-.cols-2 { grid-template-columns: repeat(2, 1fr); }
+/* СТРАНИЦА 1: Две колонки (для видео) */
+.cols-2 { 
+    grid-template-columns: repeat(2, 1fr); 
+}
 
-/* Page 3 & 5: 4 на ПК, 2 на мобильном (чтобы видеть больше) */
+/* СТРАНИЦА 2: ВЕРТИКАЛЬНЫЙ СПИСОК (Desktop + Mobile) */
+/* Делаем флекс-колонку по центру */
+.vertical-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+}
+.vertical-list .select-block {
+    width: 100%;
+    max-width: 500px; /* Ограничение ширины на ПК, чтобы не было слишком широко */
+}
+.vertical-list .select-block img {
+    max-height: 300px; /* Ограничение высоты картинки, чтобы было красиво */
+    object-fit: cover;
+    object-position: top;
+}
+
+/* СТРАНИЦЫ 3 и 5: 4 колонки на ПК */
 .cols-4-mobile-2 { 
     grid-template-columns: repeat(4, 1fr); 
 }
 
-/* Page 4: 3 колонки ВЕЗДЕ (и на ПК, и на iPhone для плотной сетки) */
+/* СТРАНИЦА 4: 3 колонки на ПК */
 .cols-mobile-3 { 
     grid-template-columns: repeat(3, 1fr); 
-}
-
-/* Page 2 (Ethnicity) */
-.ethnicity-grid {
-    /* На десктопе делаем карточки ОЧЕНЬ большими (minmax 280px) */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    justify-content: center;
-}
-
-/* ===== АДАПТИВНОСТЬ (iPhone / Mobile) ===== */
-@media (max-width: 768px) {
-    
-    /* Page 2: На мобильном - одна колонка (сверху вниз), как просили */
-    .ethnicity-grid {
-        grid-template-columns: 1fr; 
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Page 3 & 5: Принудительно 2 колонки */
-    .cols-4-mobile-2 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Page 4: Принудительно 3 колонки (мелкая сетка) */
-    .cols-mobile-3 {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px; /* Чуть меньше отступ, чтобы влезло */
-    }
-    
-    /* Уменьшаем шрифт на карточках 4-й страницы, так как они узкие */
-    .cols-mobile-3 .select-block p {
-        font-size: 12px;
-        padding: 6px 0;
-    }
 }
 
 /* ===== SELECT BLOCKS ===== */
@@ -164,24 +148,19 @@ h1, h2 {
     transform: scale(1.02);
 }
 
-/* Page 1 Specific Fixes */
+/* Специфичные фиксы для Страницы 1 */
 #page1 .grid { display: flex; justify-content: center; gap: 24px; }
 #page1 .select-block { max-width: 250px; aspect-ratio: 9 / 16; }
 #page1 .select-block video { height: 100%; }
 
-/* Page 5 Voice Grid */
+/* Voice Grid (Страница 5) - ПК */
 .voice-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Десктоп */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 16px;
     justify-items: center;
 }
 .voice-grid .select-block { width: 100%; }
-
-@media (max-width: 600px) {
-    /* На мобильном Voice тоже в 2 колонки */
-    .voice-grid { grid-template-columns: repeat(2, 1fr); }
-}
 
 /* Relationship Small Images */
 .relationship-small .select-block {
@@ -193,34 +172,9 @@ h1, h2 {
 .relationship-small .select-block img { width: 60px; margin-bottom: 5px; }
 .relationship-small .select-block p { position: static; background: none; padding: 0; font-size: 13px; }
 
-/* ===== BUTTONS ===== */
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-button {
-    padding: 12px 30px;
-    background: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    transition: background 0.2s;
-}
-button:hover:not(:disabled) { background: var(--primary-hover); }
-button:disabled { opacity: 0.4; cursor: not-allowed; background: #333; color: #888; }
-button.back { background: #333; }
-button.back:hover { background: #444; }
-
-/* ===== SUMMARY (Page 6) ===== */
+/* ===== SUMMARY (Страница 6) - ПК ===== */
 .summary-grid {
     display: grid;
-    /* Десктоп: авто-заполнение */
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 16px;
     padding: 10px;
@@ -244,18 +198,27 @@ button.back:hover { background: #444; }
     object-fit: contain;
 }
 
-/* Мобильный Summary: Принудительно 2 колонки */
-@media (max-width: 768px) {
-    .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .summary-card p {
-        font-size: 12px; /* Чуть меньше шрифт, чтобы влезал текст */
-    }
-    .summary-card img, .summary-card video {
-        max-height: 120px; /* Чуть меньше картинки по высоте */
-    }
+/* ===== BUTTONS ===== */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
 }
+button {
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+button:hover:not(:disabled) { background: var(--primary-hover); }
+button:disabled { opacity: 0.4; cursor: not-allowed; background: #333; color: #888; }
+button.back { background: #333; }
 
 /* ===== SLIDER ===== */
 .age-slider { margin: 40px auto 20px; max-width: 400px; text-align: center; }
@@ -271,3 +234,45 @@ button.back:hover { background: #444; }
     font-size: 14px;
 }
 input[type="range"] { width: 100%; accent-color: var(--primary-color); cursor: pointer; }
+
+/* ========================================= */
+/* ===== АДАПТИВНОСТЬ (MOBILE / iPHONE) ==== */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* Страница 2: Она уже адаптивная благодаря .vertical-list, 
+       но можно чуть уменьшить ширину */
+    .vertical-list .select-block {
+        max-width: 100%; /* На мобильном на всю ширину */
+    }
+
+    /* Страницы 3 и 5: Принудительно 2 колонки */
+    .cols-4-mobile-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Страница 4 (Hair): ПРИНУДИТЕЛЬНО 3 колонки */
+    .cols-mobile-3 {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px; /* Уменьшаем отступ, чтобы влезло */
+    }
+    /* Уменьшаем текст для 3-х колонок */
+    .cols-mobile-3 .select-block p {
+        font-size: 11px;
+        padding: 4px 0;
+    }
+
+    /* Страница 5 (Voice): Принудительно 2 колонки */
+    .voice-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Страница 6 (Summary): ПРИНУДИТЕЛЬНО 2 колонки */
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    /* Компактный вид саммари */
+    .summary-card p { font-size: 12px; }
+    .summary-card img, .summary-card video { max-height: 120px; }
+}
