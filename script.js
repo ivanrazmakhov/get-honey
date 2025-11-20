@@ -19,11 +19,11 @@ const state = {
 
 // Альтернативные картинки для Ethnicity в Summary
 const ethnicitySummaryImages = {
-    "White":  "images/eth_white_summary.jpg",
-    "Asian":  "images/eth_asian_summary.jpg",
-    "Arab":   "images/eth_arab_summary.jpg",
-    "Black":  "images/eth_black_summary.jpg",
-    "Latina": "images/eth_latina_summary.jpg"
+    "White":  "images/eth_white_summary.png",
+    "Asian":  "images/eth_asian_summary.png",
+    "Arab":   "images/eth_arab_summary.png",
+    "Black":  "images/eth_black_summary.png",
+    "Latina": "images/eth_latina_summary.png"
 };
 
 // =====================
